@@ -1,0 +1,28 @@
+.btnIcon {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: background-color 0.2s;
+}
+
+.btnIcon:hover {
+    background-color: var(--border);
+}
+
+.iconDark {
+    display: none;
+}
+
+:global(html.dark) .iconLight {
+    display: none;
+}
+
+:global(html.dark) .iconDark {
+    display: inline-block;
+}

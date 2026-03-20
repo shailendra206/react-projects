@@ -1,0 +1,84 @@
+/* ========================================
+   COLOR PALETTE
+   ======================================== */
+:root {
+    --primary: #1a2530;
+    --bg-light: #f4f4f5;
+    --bg-dark: #0f172a;
+    --surface-light: #ffffff;
+    --surface-dark: #1e293b;
+    --text-light-primary: #1f2937;
+    --text-light-secondary: #4b5563;
+    --text-dark-primary: #f3f4f6;
+    --text-dark-secondary: #9ca3af;
+    --border-light: #e5e7eb;
+    --border-dark: #334155;
+    --landing-bg: #f9f9f9;
+
+    --bg: var(--bg-light);
+    --surface: var(--surface-light);
+    --text-primary: var(--text-light-primary);
+    --text-secondary: var(--text-light-secondary);
+    --border: var(--border-light);
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+html.dark {
+    --bg: var(--bg-dark);
+    --surface: var(--surface-dark);
+    --text-primary: var(--text-dark-primary);
+    --text-secondary: var(--text-dark-secondary);
+    --border: var(--border-dark);
+    --nav-bg: rgba(30, 41, 59, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --landing-bg: #0f172a;
+    --primary: #e2e8f0;
+}
+
+/* ========================================
+   RESET
+   ======================================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Public Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
+
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
