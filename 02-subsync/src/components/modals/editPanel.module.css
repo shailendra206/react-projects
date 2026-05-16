@@ -1,0 +1,198 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 490;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.editModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 495;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: min(430px, calc(100vw - 32px));
+  max-height: calc(100vh - 56px);
+  padding: 24px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  transform: translate(-50%, -50%);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.avatarWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.name {
+  display: block;
+  color: var(--text1);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.category {
+  color: var(--text3);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  color: var(--text3);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.closeButton:hover {
+  background: var(--bg);
+  color: var(--text1);
+}
+
+.amountRow {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.amount {
+  color: var(--text1);
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.cycle {
+  color: var(--text2);
+  font-size: 13px;
+}
+
+.usageBadge {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+  border-radius: 20px;
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--amber);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.meta {
+  padding: 14px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 13px;
+}
+
+.metaRow:last-child {
+  border-bottom: 0;
+}
+
+.metaRow span:last-child {
+  color: var(--text1);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.saveButton {
+  padding: 13px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.15s ease;
+}
+
+.saveButton:hover {
+  background: var(--accent-hover);
+}
+
+.cancelButton {
+  padding: 13px;
+  border-radius: 12px;
+  background: rgba(255, 107, 26, 0.08);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.deleteButton {
+  padding: 10px;
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 768px) {
+  .editModal {
+    width: min(430px, calc(100vw - 48px));
+    max-height: calc(100vh - 32px);
+  }
+}
+
+@media (max-width: 480px) {
+  .editModal {
+    width: calc(100vw - 20px);
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .amount {
+    font-size: 32px;
+  }
+}

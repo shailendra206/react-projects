@@ -1,0 +1,637 @@
+.calendarPage {
+  width: min(var(--page-width), calc(100% - (var(--page-gutter) * 2)));
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: var(--text3);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.activeCrumb {
+  color: var(--accent);
+}
+
+.calendarLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+  align-items: start;
+}
+
+.calendarMain,
+.sideCard {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+}
+
+.calendarMain {
+  position: relative;
+  padding: 24px;
+  background: var(--surface);
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.monthTitle {
+  flex: 1;
+  color: var(--text1);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.calendarNav {
+  display: flex;
+  gap: 4px;
+}
+
+.navButton,
+.todayButton {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text2);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.todayButton {
+  padding: 5px 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.navButton:hover,
+.todayButton:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(255, 107, 26, 0.04);
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.dayHeader {
+  padding: 6px 0 12px;
+  color: var(--text3);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.calendarCell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 72px;
+  padding: 8px 6px;
+  border-top: 1px solid var(--border);
+  transition: background 0.1s ease;
+}
+
+.calendarCell:hover {
+  background: rgba(255, 107, 26, 0.04);
+}
+
+.calendarCell > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--text1);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.otherMonth > span {
+  color: var(--text3);
+  opacity: 0.45;
+}
+
+.today {
+  background: rgba(255, 107, 26, 0.12);
+}
+
+.today > span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.urgentCell {
+  border-left: 2px solid var(--amber);
+}
+
+.calendarPopover {
+  position: absolute;
+  z-index: 200;
+  display: block;
+  width: fit-content;
+  min-width: 200px;
+  max-width: 280px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #1a1a1a;
+  color: #ffffff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.popoverHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.popoverDate {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.popoverTotal {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.popoverItems {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.popoverItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.popoverDot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.popoverName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.popoverBadge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 107, 26, 0.1);
+  color: var(--accent);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.popoverPrice {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.popoverRemind {
+  width: 100%;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 4px 2px 0;
+  justify-content: center;
+}
+
+.dots i,
+.summaryDot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.netflixDot {
+  background: #e50914;
+}
+
+.adobeDot {
+  background: #ff0000;
+}
+
+.figmaDot {
+  background: #f59e0b;
+}
+
+.spotifyDot {
+  background: #1db954;
+}
+
+.notionDot,
+.icloudDot {
+  background: #374151;
+}
+
+.calendarSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sideCard {
+  padding: 18px;
+}
+
+.darkCard {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: var(--surface-dark);
+  color: var(--text-on-dark);
+}
+
+.lightCard {
+  background: var(--surface);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.cardLabel {
+  color: var(--text3);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.darkCard .cardLabel {
+  color: var(--text-on-dark-2);
+}
+
+.whiteBadge {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.monthAmount {
+  display: block;
+  margin: 4px 0 16px;
+  color: var(--text-on-dark);
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.summaryList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0 12px;
+  color: var(--text-on-dark-2);
+  text-align: center;
+}
+
+.emptyIcon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 107, 26, 0.12);
+  color: var(--accent);
+}
+
+.emptyState span {
+  color: var(--text-on-dark-2);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.summaryItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-on-dark-2);
+  font-size: 12.5px;
+}
+
+.summaryItem span {
+  flex: 1;
+}
+
+.summaryItem small {
+  color: var(--text-on-dark-2);
+  font-size: 11px;
+}
+
+.summaryItem em {
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.14);
+  color: var(--amber);
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.summaryItem b {
+  margin-left: auto;
+  color: var(--text-on-dark);
+  font-size: 13px;
+}
+
+.viewAllButton {
+  color: var(--text-on-dark-2);
+  font-size: 12px;
+  transition: color 0.15s ease;
+}
+
+.viewAllButton:hover {
+  color: var(--accent);
+}
+
+.trialItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.trialItem:last-child {
+  margin-bottom: 0;
+}
+
+.trialTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trialAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.figmaAvatar {
+  background: #f24e1e;
+}
+
+.notionAvatar {
+  background: #444444;
+}
+
+.trialTop p {
+  flex: 1;
+}
+
+.trialTop strong,
+.trialTop small {
+  display: block;
+}
+
+.trialTop strong {
+  color: var(--text1);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.trialTop small {
+  color: var(--text2);
+  font-size: 11px;
+}
+
+.trialActions {
+  display: flex;
+  gap: 5px;
+}
+
+.trialActions button {
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: var(--text2);
+  font-size: 11.5px;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.trialActions button:first-child {
+  color: var(--accent);
+}
+
+.trialActions button:hover {
+  background: var(--bg);
+}
+
+.progressBar {
+  height: 3px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(255, 107, 26, 0.15);
+}
+
+.progressBar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+}
+
+.progressFigma {
+  width: 20%;
+}
+
+.progressNotion {
+  width: 33%;
+}
+
+@media (max-width: 1024px) {
+  .calendarLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .calendarSidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendarMain {
+    padding: 16px;
+  }
+
+  .calendarCell {
+    min-height: 56px;
+    padding: 6px 4px;
+  }
+
+  .calendarCell > span {
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+  }
+
+  .monthTitle {
+    font-size: 20px;
+  }
+
+  .calendarSidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .calendarPopover {
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendarMain {
+    padding: 12px;
+  }
+
+  .calendarHeader {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .monthTitle {
+    flex-basis: 100%;
+    font-size: 18px;
+  }
+
+  .navButton {
+    width: 28px;
+    height: 28px;
+  }
+
+  .todayButton {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .dayHeader {
+    padding: 4px 0 8px;
+    font-size: 9px;
+  }
+
+  .calendarCell {
+    min-height: 44px;
+    padding: 4px 2px;
+  }
+
+  .calendarCell > span {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+
+  .calendarPopover {
+    min-width: 0;
+    width: calc(100vw - 24px);
+    border-radius: 12px;
+  }
+
+  .dots {
+    gap: 2px;
+    padding: 2px 1px 0;
+  }
+
+  .dots i,
+  .summaryDot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .sideCard {
+    padding: 16px;
+  }
+
+  .monthAmount {
+    font-size: 28px;
+  }
+
+  .trialTop {
+    align-items: flex-start;
+  }
+
+  .trialActions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  .calendarCell {
+    min-height: 38px;
+  }
+
+  .dayHeader {
+    font-size: 8px;
+  }
+
+  .calendarCell > span {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
+}
