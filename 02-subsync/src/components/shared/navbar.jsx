@@ -50,7 +50,7 @@ function Navbar({ isDark, setIsDark, isEntryModal, setEntryModal, isDashboard, s
               setCalender(true)
             }}
           >
-            Calender
+            Calendar
           </button>
         </nav>
 
