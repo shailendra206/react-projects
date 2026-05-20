@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mitai — Discover Anime</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       SHARED NAVBAR
+  ═══════════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="#" class="logo" id="logoLink">
+      <span class="logo-jp">見たい</span>
+      <span class="logo-en">mitai</span>
+    </a>
+    <div class="nav-search">
+      <span class="material-symbols-rounded nav-icon" aria-hidden="true">search</span>
+      <input type="text" id="navSearchInput" placeholder="Search anime, genres, studios..." />
+      <button class="search-close" id="searchClose" type="button" aria-label="Close search">
+        <span class="material-symbols-rounded nav-icon" aria-hidden="true">close</span>
+      </button>
+    </div>
+    <div class="nav-links">
+      <button class="nav-icon-btn nav-browse-btn" id="navBrowseBtn" title="Browse" aria-label="Browse">
+        <span class="material-symbols-rounded nav-icon" aria-hidden="true">grid_view</span>
+      </button>
+      <button class="nav-icon-btn nav-watchlist" title="Watchlist" aria-label="Watchlist">
+        <span class="material-symbols-rounded nav-icon" aria-hidden="true">bookmark</span>
+      </button>
+      <button class="nav-icon-btn mobile-search-toggle" id="mobileSearchToggle" type="button" aria-label="Open search">
+        <span class="material-symbols-rounded nav-icon" aria-hidden="true">search</span>
+      </button>
+      <button class="nav-icon-btn theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">
+        <span class="material-symbols-rounded icon-sun nav-icon" aria-hidden="true">light_mode</span>
+        <span class="material-symbols-rounded icon-moon nav-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       PAGE: HOME
+  ═══════════════════════════════════════ -->
+  <div id="page-home">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg">
+        <img src="https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-RtgLkOgSDgYb.jpg" alt="FMA Brotherhood" class="hero-img" />
+        <div class="hero-gradient"></div>
+      </div>
+      <div class="hero-layout">
+        <div class="hero-content" style="width:100%">
+          <div class="hero-tags">
+            <span class="tag">TV Series</span>
+            <span class="tag tag-score"><span class="material-symbols-rounded rating-icon" aria-hidden="true">star</span>9.1</span>
+            <span class="tag tag-genre">Action</span>
+            <span class="tag tag-genre">Adventure</span>
+            <span class="tag tag-genre">Drama</span>
+          </div>
+          <h1 class="hero-title">
+            Fullmetal Alchemist<br />
+            <em>Brotherhood</em>
+          </h1>
+          <p class="hero-synopsis">
+            Two brothers search for the Philosopher's Stone after a failed alchemical ritual costs them their bodies. A story about sacrifice, humanity, and the price of ambition.
+          </p>
+          <div class="hero-stats">
+            <div class="stat"><span class="stat-label">Episodes</span><span class="stat-val">64</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-label">Status</span><span class="stat-val">Finished</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-label">Year</span><span class="stat-val">2009</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-label">Studio</span><span class="stat-val">Bones</span></div>
+          </div>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="showPage('detail')">
+              <span class="material-symbols-rounded button-icon" aria-hidden="true">play_arrow</span>
+              Watch Trailer
+            </button>
+            <button class="btn-ghost">
+              <span class="material-symbols-rounded button-icon" aria-hidden="true">bookmark</span>
+              Add to Watchlist
+            </button>
+            <button class="btn-watch" onclick="showPage('detail')">Watch Anime <span class="material-symbols-rounded text-icon" aria-hidden="true">arrow_forward</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-indicators">
+        <span class="indicator active"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+      </div>
+    </section>
+
+    <!-- MAIN ROWS -->
+    <main class="main">
+
+      <!-- TRENDING -->
+      <section class="row-section">
+        <div class="row-header">
+          <h2 class="row-title">Trending Now</h2>
+          <a href="#" class="row-link show-browse">View all <span class="material-symbols-rounded text-icon">arrow_forward</span></a>
+        </div>
+        <div class="anime-row">
+          <div class="anime-card" data-detail><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-KJTQz9AIRpIM.jpg" loading="lazy" alt="FMA"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Fullmetal Alchemist: Brotherhood</p><span class="card-sub">TV · 64 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11757-sFYqlvTDNjto.jpg" loading="lazy" alt="SG"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Steins;Gate</p><span class="card-sub">TV · 24 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-C3H9KcQPJBkX.jpg" loading="lazy" alt="AoT"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Attack on Titan</p><span class="card-sub">TV · 25 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg" loading="lazy" alt="HxH"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Hunter x Hunter</p><span class="card-sub">TV · 148 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-lawCwhHMCPHD.jpg" loading="lazy" alt="DN"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.6</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Death Note</p><span class="card-sub">TV · 37 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-PEn1CTc93blC.jpg" loading="lazy" alt="DS"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.6</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Demon Slayer</p><span class="card-sub">TV · 26 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx31240-pfSBnQVMujnS.jpg" loading="lazy" alt="RZ"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.4</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Re:Zero</p><span class="card-sub">TV · 25 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-9WfFtuoYMEBD.jpg" loading="lazy" alt="GI"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Gintama</p><span class="card-sub">TV · 201 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx6702-hGJriIAEHZdM.jpg" loading="lazy" alt="CG"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Code Geass</p><span class="card-sub">TV · 25 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx10087-o01jHOyJidSx.jpg" loading="lazy" alt="FZ"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Fate/Zero</p><span class="card-sub">TV · 13 ep</span></div>
+        </div>
+      </section>
+
+      <!-- THIS SEASON -->
+      <section class="row-section">
+        <div class="row-header">
+          <h2 class="row-title">This Season <span class="season-badge">Spring 2025</span></h2>
+          <a href="#" class="row-link show-browse">View all <span class="material-symbols-rounded text-icon">arrow_forward</span></a>
+        </div>
+        <div class="anime-row">
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx141258-tTWWN0cMJblN.jpg" loading="lazy" alt="Fr"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span></div><p class="card-title">Frieren: Beyond Journey's End</p><span class="card-sub">TV · Ongoing</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-EoqhfFqWfAqq.jpg" loading="lazy" alt="DM"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span></div><p class="card-title">Delicious in Dungeon</p><span class="card-sub">TV · Ongoing</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171018-vSFHhWlFMqQw.jpg" loading="lazy" alt="SL"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.2</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span></div><p class="card-title">Solo Leveling S2</p><span class="card-sub">TV · Ongoing</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx162804-FWnXmXMRQMPQ.jpg" loading="lazy" alt="K8"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span></div><p class="card-title">Kaijuu 8-gou</p><span class="card-sub">TV · Ongoing</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166531-ZCiP9ClnOoHt.jpg" loading="lazy" alt="WB"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>7.8</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span></div><p class="card-title">Wind Breaker</p><span class="card-sub">TV · Ongoing</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx153406-QEZC6F1TKFQV.jpg" loading="lazy" alt="Mu"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.9</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Mushishi</p><span class="card-sub">TV · 26 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx2001-KwGbSAUVspqt.jpg" loading="lazy" alt="GL"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span></div><p class="card-title">Gurren Lagann</p><span class="card-sub">TV · 27 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg" loading="lazy" alt="HxH"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span></div><p class="card-title">Hunter x Hunter</p><span class="card-sub">TV · Ongoing</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-PEn1CTc93blC.jpg" loading="lazy" alt="DS"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.6</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span></div><p class="card-title">Demon Slayer</p><span class="card-sub">TV · Ongoing</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx176496-QGenULFkDMES.jpg" loading="lazy" alt="UM"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>7.6</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span></div><p class="card-title">Unnamed Memory</p><span class="card-sub">TV · Ongoing</span></div>
+        </div>
+      </section>
+
+      <!-- ALL TIME POPULAR -->
+      <section class="row-section">
+        <div class="row-header">
+          <h2 class="row-title">All Time Popular</h2>
+          <a href="#" class="row-link show-browse">View all <span class="material-symbols-rounded text-icon">arrow_forward</span></a>
+        </div>
+        <div class="anime-row">
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-exMeYtWlFCQO.jpg" loading="lazy" alt="Na"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>7.9</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Naruto</p><span class="card-sub">TV · 220 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx100526-JuJSBBRTl09E.jpg" loading="lazy" alt="MHA"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">My Hero Academia</p><span class="card-sub">TV · 113 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-9WfFtuoYMEBD.jpg" loading="lazy" alt="GI"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Gintama</p><span class="card-sub">TV · 201 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx10087-o01jHOyJidSx.jpg" loading="lazy" alt="FZ"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Fate/Zero</p><span class="card-sub">TV · 13 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx2001-KwGbSAUVspqt.jpg" loading="lazy" alt="GL"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Gurren Lagann</p><span class="card-sub">TV · 27 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx918-nkuVByMfDMSB.jpg" loading="lazy" alt="GG"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Gungrave</p><span class="card-sub">TV · 26 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx6702-hGJriIAEHZdM.jpg" loading="lazy" alt="CG"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Code Geass</p><span class="card-sub">TV · 25 ep</span></div>
+          <div class="anime-card" data-detail><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-KJTQz9AIRpIM.jpg" loading="lazy" alt="FMA"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">FMA: Brotherhood</p><span class="card-sub">TV · 64 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-C3H9KcQPJBkX.jpg" loading="lazy" alt="AoT"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Attack on Titan</p><span class="card-sub">TV · 25 ep</span></div>
+          <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11757-sFYqlvTDNjto.jpg" loading="lazy" alt="SG"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div></div><p class="card-title">Steins;Gate</p><span class="card-sub">TV · 24 ep</span></div>
+        </div>
+      </section>
+
+    </main>
+  </div><!-- /page-home -->
+
+
+  <!-- ═══════════════════════════════════════
+       PAGE: BROWSE / SEARCH
+  ═══════════════════════════════════════ -->
+  <div id="page-browse" hidden>
+    <div class="browse-page">
+
+      <!-- FILTER SECTION -->
+      <div class="filter-section">
+        <div class="filter-header">
+          <div class="filter-title-group">
+            <h1 class="browse-title">Browse</h1>
+            <span class="results-count" id="resultsCount">18 anime</span>
+          </div>
+          <button class="filter-reset" id="filterReset" type="button">
+            <span class="material-symbols-rounded" style="font-size:16px">filter_alt_off</span>
+            Clear filters
+          </button>
+        </div>
+
+        <button class="filter-toggle-mob" id="filterToggleMob" type="button" aria-expanded="false">
+          <span class="material-symbols-rounded" style="font-size:18px" id="filterToggleIcon">tune</span>
+          <span id="filterToggleLabel">Filters</span>
+        </button>
+
+        <div class="filter-bar" id="filterBar">
+          <div class="filter-input-wrap">
+            <span class="material-symbols-rounded filter-input-icon">search</span>
+            <input type="text" class="filter-input" id="searchFilter" placeholder="Search title..." autocomplete="off" />
+          </div>
+          <div class="filter-select-wrap">
+            <select class="filter-select" id="typeFilter">
+              <option value="">Type</option>
+              <option value="TV">TV</option>
+              <option value="MOVIE">Movie</option>
+              <option value="OVA">OVA</option>
+              <option value="ONA">ONA</option>
+              <option value="SPECIAL">Special</option>
+            </select>
+            <span class="material-symbols-rounded filter-chevron">expand_more</span>
+          </div>
+          <div class="filter-select-wrap">
+            <select class="filter-select" id="genreFilter">
+              <option value="">Genre</option>
+              <option>Action</option><option>Adventure</option><option>Comedy</option>
+              <option>Drama</option><option>Fantasy</option><option>Horror</option>
+              <option>Mystery</option><option>Psychological</option><option>Romance</option>
+              <option>Sci-Fi</option><option>Slice of Life</option><option>Sports</option>
+              <option>Supernatural</option><option>Thriller</option>
+            </select>
+            <span class="material-symbols-rounded filter-chevron">expand_more</span>
+          </div>
+          <div class="filter-select-wrap">
+            <select class="filter-select" id="statusFilter">
+              <option value="">Status</option>
+              <option value="RELEASING">Airing</option>
+              <option value="FINISHED">Finished</option>
+              <option value="NOT_YET_RELEASED">Upcoming</option>
+            </select>
+            <span class="material-symbols-rounded filter-chevron">expand_more</span>
+          </div>
+          <div class="filter-select-wrap">
+            <select class="filter-select" id="seasonFilter">
+              <option value="">Season</option>
+              <option value="WINTER">Winter</option>
+              <option value="SPRING">Spring</option>
+              <option value="SUMMER">Summer</option>
+              <option value="FALL">Fall</option>
+            </select>
+            <span class="material-symbols-rounded filter-chevron">expand_more</span>
+          </div>
+          <div class="filter-select-wrap">
+            <select class="filter-select" id="yearFilter">
+              <option value="">Year</option>
+            </select>
+            <span class="material-symbols-rounded filter-chevron">expand_more</span>
+          </div>
+          <div class="filter-select-wrap">
+            <select class="filter-select" id="sortFilter">
+              <option value="TRENDING_DESC">Trending</option>
+              <option value="POPULARITY_DESC">Popular</option>
+              <option value="SCORE_DESC">Top Rated</option>
+              <option value="TITLE_ROMAJI">A–Z</option>
+              <option value="START_DATE_DESC">Newest</option>
+            </select>
+            <span class="material-symbols-rounded filter-chevron">expand_more</span>
+          </div>
+        </div>
+
+        <div class="active-filters" id="activeFilters" hidden></div>
+      </div>
+
+      <!-- GRID -->
+      <div class="browse-grid" id="browseGrid">
+        <div class="anime-card" data-detail><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-KJTQz9AIRpIM.jpg" loading="lazy" alt="FMA"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Fullmetal Alchemist: Brotherhood</p><span class="card-sub">64 ep · 2009</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11757-sFYqlvTDNjto.jpg" loading="lazy" alt="SG"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Steins;Gate</p><span class="card-sub">24 ep · 2011</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-C3H9KcQPJBkX.jpg" loading="lazy" alt="AoT"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Attack on Titan</p><span class="card-sub">25 ep · 2013</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg" loading="lazy" alt="HxH"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Hunter x Hunter</p><span class="card-sub">148 ep · 2011</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-lawCwhHMCPHD.jpg" loading="lazy" alt="DN"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.6</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Death Note</p><span class="card-sub">37 ep · 2006</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-PEn1CTc93blC.jpg" loading="lazy" alt="DS"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.6</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span><span class="card-type-badge">TV</span></div><p class="card-title">Demon Slayer</p><span class="card-sub">26 ep · 2019</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx31240-pfSBnQVMujnS.jpg" loading="lazy" alt="RZ"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.4</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Re:Zero</p><span class="card-sub">25 ep · 2016</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx141258-tTWWN0cMJblN.jpg" loading="lazy" alt="Fr"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span><span class="card-type-badge">TV</span></div><p class="card-title">Frieren: Beyond Journey's End</p><span class="card-sub">Ongoing · 2023</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-EoqhfFqWfAqq.jpg" loading="lazy" alt="DM"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span><span class="card-type-badge">TV</span></div><p class="card-title">Delicious in Dungeon</p><span class="card-sub">Ongoing · 2024</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-9WfFtuoYMEBD.jpg" loading="lazy" alt="GI"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>9.0</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Gintama</p><span class="card-sub">201 ep · 2006</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx6702-hGJriIAEHZdM.jpg" loading="lazy" alt="CG"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Code Geass</p><span class="card-sub">25 ep · 2006</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx10087-o01jHOyJidSx.jpg" loading="lazy" alt="FZ"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Fate/Zero</p><span class="card-sub">13 ep · 2011</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-exMeYtWlFCQO.jpg" loading="lazy" alt="Na"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>7.9</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Naruto</p><span class="card-sub">220 ep · 2002</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx2001-KwGbSAUVspqt.jpg" loading="lazy" alt="GL"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.7</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Gurren Lagann</p><span class="card-sub">27 ep · 2007</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx153406-QEZC6F1TKFQV.jpg" loading="lazy" alt="Mu"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.9</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">Mushishi</p><span class="card-sub">26 ep · 2005</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171018-vSFHhWlFMqQw.jpg" loading="lazy" alt="SL"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.2</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span><span class="card-type-badge">TV</span></div><p class="card-title">Solo Leveling S2</p><span class="card-sub">Ongoing · 2025</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx162804-FWnXmXMRQMPQ.jpg" loading="lazy" alt="K8"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span><span class="card-type-badge">TV</span></div><p class="card-title">Kaijuu 8-gou</p><span class="card-sub">Ongoing · 2024</span></div>
+        <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx100526-JuJSBBRTl09E.jpg" loading="lazy" alt="MHA"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">My Hero Academia</p><span class="card-sub">113 ep · 2016</span></div>
+
+        <div class="browse-empty" id="browseEmpty" hidden>
+          <span class="material-symbols-rounded browse-empty-icon">search_off</span>
+          <p class="browse-empty-title">No results found</p>
+          <p class="browse-empty-sub">Try adjusting your filters or search term</p>
+          <button class="btn-ghost browse-empty-btn" id="emptyReset" type="button">Clear all filters</button>
+        </div>
+      </div>
+
+      <div class="load-more-wrap">
+        <button class="btn-ghost load-more-btn" type="button">
+          Load more
+          <span class="material-symbols-rounded text-icon">expand_more</span>
+        </button>
+      </div>
+
+    </div>
+  </div><!-- /page-browse -->
+
+
+  <!-- ═══════════════════════════════════════
+       PAGE: ANIME DETAIL  (hardcoded — FMA Brotherhood)
+  ═══════════════════════════════════════ -->
+  <div id="page-detail" hidden>
+
+    <!-- ── 1. DETAIL HERO ─────────────────────────────────── -->
+    <div class="detail-hero">
+      <!-- Banner -->
+      <div class="detail-banner-wrap">
+        <img
+          class="detail-banner-img"
+          src="https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-RtgLkOgSDgYb.jpg"
+          alt="Fullmetal Alchemist: Brotherhood banner"
+        />
+        <div class="detail-banner-gradient"></div>
+      </div>
+
+      <!-- Poster + text -->
+      <div class="detail-hero-body">
+        <img
+          class="detail-poster"
+          src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-KJTQz9AIRpIM.jpg"
+          alt="FMA Brotherhood poster"
+        />
+
+        <div class="detail-hero-text">
+          <!-- Genres -->
+          <div class="detail-genres">
+            <span class="detail-genre-tag">Action</span>
+            <span class="detail-genre-tag">Adventure</span>
+            <span class="detail-genre-tag">Drama</span>
+            <span class="detail-genre-tag">Fantasy</span>
+            <span class="detail-genre-tag">Military</span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="detail-title">Fullmetal Alchemist: <em>Brotherhood</em></h1>
+
+          <!-- Meta row: score · format · episodes · status · season -->
+          <div class="detail-meta-row">
+            <div class="detail-meta-item">
+              <span class="detail-meta-label">Score</span>
+              <span class="detail-meta-value detail-meta-score">
+                <span class="material-symbols-rounded rating-icon">star</span> 9.1 / 10
+              </span>
+            </div>
+            <div class="detail-meta-item">
+              <span class="detail-meta-label">Format</span>
+              <span class="detail-meta-value">TV Series</span>
+            </div>
+            <div class="detail-meta-item">
+              <span class="detail-meta-label">Episodes</span>
+              <span class="detail-meta-value">64</span>
+            </div>
+            <div class="detail-meta-item">
+              <span class="detail-meta-label">Status</span>
+              <span class="detail-meta-value">Finished</span>
+            </div>
+            <div class="detail-meta-item">
+              <span class="detail-meta-label">Season</span>
+              <span class="detail-meta-value">Spring 2009</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="detail-actions">
+            <button class="btn-primary" id="detailTrailerBtn">
+              <span class="material-symbols-rounded button-icon">play_arrow</span>
+              Watch Trailer
+            </button>
+            <button class="btn-ghost" id="detailWatchlistBtn">
+              <span class="material-symbols-rounded button-icon">bookmark</span>
+              Watchlist
+            </button>
+            <button class="btn-watch">
+              Watch Anime <span class="material-symbols-rounded text-icon">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /detail-hero -->
+
+    <!-- ── DETAIL BODY ─────────────────────────────────────── -->
+    <div class="detail-body">
+
+      <!-- ── 2. SYNOPSIS ───────────────────────────────────── -->
+      <section class="detail-section">
+        <h2 class="detail-section-title">Synopsis</h2>
+        <p class="detail-synopsis" id="detailSynopsis">
+          After a horrific alchemy experiment leaves brothers Edward and Alphonse Elric in broken, diminished forms, they spend years searching for the fabled Philosopher's Stone — the one thing that could restore what they've lost. Their journey pulls them into a vast conspiracy involving the military state of Amestris, a shadowy immortal called Father, and seven homunculi named after humanity's most destructive sins. Fullmetal Alchemist: Brotherhood is a story about the cost of ambition, the limits of science, and the bonds that make us human.
+        </p>
+        <button class="synopsis-toggle" id="synopsisToggle">Read more</button>
+      </section>
+
+      <!-- ── 3. TRAILER EMBED ──────────────────────────────── -->
+      <section class="detail-section" id="trailerSection">
+        <h2 class="detail-section-title">Trailer</h2>
+        <div class="detail-trailer-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/--IcmZkvL0Q?rel=0"
+            allowfullscreen
+            loading="lazy"
+            title="Fullmetal Alchemist: Brotherhood trailer"
+          ></iframe>
+        </div>
+      </section>
+
+      <!-- ── 4. CHARACTERS + STAFF (two-col) ──────────────── -->
+      <div class="detail-two-col">
+
+        <!-- Characters -->
+        <section class="detail-section">
+          <h2 class="detail-section-title">Characters</h2>
+          <div class="person-row">
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b11-qHJigyTnBiDX.png" alt="Edward Elric" loading="lazy" />
+              </div>
+              <p class="person-name">Edward Elric</p>
+              <p class="person-role main">MAIN</p>
+              <p class="person-va">Romi Park</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b12-6qhEjJ5JXBI4.png" alt="Alphonse Elric" loading="lazy" />
+              </div>
+              <p class="person-name">Alphonse Elric</p>
+              <p class="person-role main">MAIN</p>
+              <p class="person-va">Rie Kugimiya</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b13-6XNrLWuEPiRT.png" alt="Roy Mustang" loading="lazy" />
+              </div>
+              <p class="person-name">Roy Mustang</p>
+              <p class="person-role main">MAIN</p>
+              <p class="person-va">Shinichiro Miki</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b14-0CiJjvIjlrYi.png" alt="Winry Rockbell" loading="lazy" />
+              </div>
+              <p class="person-name">Winry Rockbell</p>
+              <p class="person-role main">MAIN</p>
+              <p class="person-va">Megumi Toyoguchi</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b46274-BYdJBViTv0Gr.png" alt="Riza Hawkeye" loading="lazy" />
+              </div>
+              <p class="person-name">Riza Hawkeye</p>
+              <p class="person-role">SUPPORTING</p>
+              <p class="person-va">Fumiko Orikasa</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b522-IrxHiXiMkqhL.png" alt="Scar" loading="lazy" />
+              </div>
+              <p class="person-name">Scar</p>
+              <p class="person-role">SUPPORTING</p>
+              <p class="person-va">Ryotaro Okiayu</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b46272-V8B5X5e2b1Lg.png" alt="Greed" loading="lazy" />
+              </div>
+              <p class="person-name">Greed</p>
+              <p class="person-role">SUPPORTING</p>
+              <p class="person-va">Yuichi Nakamura</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b46276-VJbwBhKKhraM.png" alt="Olivier Armstrong" loading="lazy" />
+              </div>
+              <p class="person-name">Olivier Armstrong</p>
+              <p class="person-role">SUPPORTING</p>
+              <p class="person-va">Yoko Soumi</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Staff -->
+        <section class="detail-section">
+          <h2 class="detail-section-title">Staff</h2>
+          <div class="person-row">
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n95623-pntRaLMVPAVE.png" alt="Yasuhiro Irie" loading="lazy" />
+              </div>
+              <p class="person-name">Yasuhiro Irie</p>
+              <p class="person-role">Director</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n97548-9y7HBk5VQZQ2.png" alt="Hiroshi Onogi" loading="lazy" />
+              </div>
+              <p class="person-name">Hiroshi Onogi</p>
+              <p class="person-role">Script</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n97001-bNPijCQ7F1FO.png" alt="Akira Senju" loading="lazy" />
+              </div>
+              <p class="person-name">Akira Senju</p>
+              <p class="person-role">Music</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n95686-mO5AhCRvnMlS.png" alt="Hiroki Kanno" loading="lazy" />
+              </div>
+              <p class="person-name">Hiroki Kanno</p>
+              <p class="person-role">Character Design</p>
+            </div>
+
+            <div class="person-card">
+              <div class="person-img-wrap">
+                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n96049-WQLfgq4vBvVS.png" alt="Bones Studio" loading="lazy" />
+              </div>
+              <p class="person-name">Bones</p>
+              <p class="person-role">Animation Studio</p>
+            </div>
+
+          </div>
+        </section>
+
+      </div><!-- /detail-two-col -->
+
+      <!-- ── 5. RELATIONS ──────────────────────────────────── -->
+      <section class="detail-section">
+        <h2 class="detail-section-title">Related Titles</h2>
+        <div class="relations-row">
+
+          <div class="relation-card">
+            <div class="relation-img-wrap">
+              <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx121-u1M1MFBbCXzo.jpg" alt="Fullmetal Alchemist (2003)" loading="lazy" />
+              <span class="relation-type">Adaptation</span>
+            </div>
+            <p class="relation-title">Fullmetal Alchemist (2003)</p>
+          </div>
+
+          <div class="relation-card">
+            <div class="relation-img-wrap">
+              <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx8826-I6MWz9wZqiZm.jpg" alt="FMA: The Sacred Star of Milos" loading="lazy" />
+              <span class="relation-type">Side Story</span>
+            </div>
+            <p class="relation-title">FMA: The Sacred Star of Milos</p>
+          </div>
+
+          <div class="relation-card">
+            <div class="relation-img-wrap">
+              <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9135-5FmE9NiFi1HB.jpg" alt="FMA: The Conqueror of Shamballa" loading="lazy" />
+              <span class="relation-type">Prequel</span>
+            </div>
+            <p class="relation-title">FMA: The Conqueror of Shamballa</p>
+          </div>
+
+          <div class="relation-card">
+            <div class="relation-img-wrap">
+              <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5758-VhXYlANxBOEV.jpg" alt="FMA OVA" loading="lazy" />
+              <span class="relation-type">Spin-off</span>
+            </div>
+            <p class="relation-title">Fullmetal Alchemist: OVA Collection</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── 6. INFO + TAGS (two-col) ──────────────────────── -->
+      <div class="detail-two-col">
+
+        <!-- Info sidebar -->
+        <section class="detail-section">
+          <h2 class="detail-section-title">Information</h2>
+          <dl class="info-list">
+            <dt class="info-label">Format</dt>    <dd class="info-value">TV Series</dd>
+            <dt class="info-label">Episodes</dt>  <dd class="info-value">64</dd>
+            <dt class="info-label">Duration</dt>  <dd class="info-value">24 min per episode</dd>
+            <dt class="info-label">Status</dt>    <dd class="info-value">Finished Airing</dd>
+            <dt class="info-label">Start date</dt><dd class="info-value">5 Apr 2009</dd>
+            <dt class="info-label">End date</dt>  <dd class="info-value">4 Jul 2010</dd>
+            <dt class="info-label">Studio</dt>    <dd class="info-value">Bones</dd>
+            <dt class="info-label">Source</dt>    <dd class="info-value">Manga</dd>
+            <dt class="info-label">Popularity</dt><dd class="info-value">265,000+</dd>
+            <dt class="info-label">Favourites</dt><dd class="info-value">100,000+</dd>
+          </dl>
+        </section>
+
+        <!-- Tags with percentage bars -->
+        <section class="detail-section">
+          <h2 class="detail-section-title">Tags</h2>
+          <div class="tags-list">
+            <div class="tag-item">
+              <span class="tag-name">Male Protagonist</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:97%"></div></div>
+              <span class="tag-pct">97%</span>
+            </div>
+            <div class="tag-item">
+              <span class="tag-name">Alchemy</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:96%"></div></div>
+              <span class="tag-pct">96%</span>
+            </div>
+            <div class="tag-item">
+              <span class="tag-name">Brothers</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:95%"></div></div>
+              <span class="tag-pct">95%</span>
+            </div>
+            <div class="tag-item">
+              <span class="tag-name">Military</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:93%"></div></div>
+              <span class="tag-pct">93%</span>
+            </div>
+            <div class="tag-item">
+              <span class="tag-name">Anti-Hero</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:88%"></div></div>
+              <span class="tag-pct">88%</span>
+            </div>
+            <div class="tag-item">
+              <span class="tag-name">Philosophy</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:85%"></div></div>
+              <span class="tag-pct">85%</span>
+            </div>
+            <div class="tag-item">
+              <span class="tag-name">Tragedy</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:82%"></div></div>
+              <span class="tag-pct">82%</span>
+            </div>
+            <div class="tag-item">
+              <span class="tag-name">Redemption</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:78%"></div></div>
+              <span class="tag-pct">78%</span>
+            </div>
+            <div class="tag-item">
+              <span class="tag-name">Found Family</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:74%"></div></div>
+              <span class="tag-pct">74%</span>
+            </div>
+            <div class="tag-item">
+              <span class="tag-name">Politics</span>
+              <div class="tag-bar-wrap"><div class="tag-bar-fill" style="width:70%"></div></div>
+              <span class="tag-pct">70%</span>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /detail-two-col -->
+
+    </div><!-- /detail-body -->
+  </div><!-- /page-detail -->
+
+
+  <!-- ═══════════════════════════════════════
+       SHARED FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">見たい <em>mitai</em></div>
+      <p class="footer-tagline">Discover what to watch next.</p>
+      <p class="footer-credit">Data powered by AniList · Built by Shailendra Goswami</p>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════ -->
+  <script>
+
+    /* ── Theme ─────────────────────────────── */
+    const root = document.documentElement;
+    if (localStorage.getItem('mitai-theme') === 'light') root.classList.add('light');
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('mitai-theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    /* ── Mobile search ─────────────────────── */
+    const mst = document.getElementById('mobileSearchToggle');
+    const sc  = document.getElementById('searchClose');
+    const nsi = document.getElementById('navSearchInput');
+    mst.addEventListener('click', () => { document.body.classList.add('search-open'); nsi.focus(); });
+    sc.addEventListener('click',  () => document.body.classList.remove('search-open'));
+
+    /* ─────────────────────────────────────────
+       PAGE ROUTER
+    ───────────────────────────────────────── */
+    const pages = {
+      home:   document.getElementById('page-home'),
+      browse: document.getElementById('page-browse'),
+      detail: document.getElementById('page-detail'),
+    };
+
+    function showPage(name, query = '') {
+      Object.values(pages).forEach(p => p.hidden = true);
+      pages[name].hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('navBrowseBtn').classList.toggle('nav-icon-btn--active', name === 'browse');
+
+      if (name === 'browse' && query) {
+        const sf = document.getElementById('searchFilter');
+        sf.value = query;
+        filters.search = query;
+        applyFilters();
+      }
+    }
+
+    /* ── Logo → home (or back from detail) */
+    document.getElementById('logoLink').addEventListener('click', e => {
+      e.preventDefault();
+      showPage('home');
+    });
+
+    /* ── Browse btn */
+    document.getElementById('navBrowseBtn').addEventListener('click', () => showPage('browse'));
+
+    /* ── "View all" links */
+    document.querySelectorAll('.show-browse').forEach(a => {
+      a.addEventListener('click', e => { e.preventDefault(); showPage('browse'); });
+    });
+
+    /* ── Navbar search → browse */
+    nsi.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const q = nsi.value.trim();
+        showPage('browse', q);
+        document.body.classList.remove('search-open');
+        nsi.value = '';
+      }
+    });
+
+    /* ── Any card with [data-detail] → open detail page */
+    document.addEventListener('click', e => {
+      if (e.target.closest('.card-save')) return;
+      const card = e.target.closest('.anime-card[data-detail]');
+      if (card) showPage('detail');
+    });
+
+    /* ─────────────────────────────────────────
+       DETAIL PAGE — synopsis toggle
+    ───────────────────────────────────────── */
+    const synEl     = document.getElementById('detailSynopsis');
+    const synToggle = document.getElementById('synopsisToggle');
+
+    synToggle.addEventListener('click', () => {
+      const open = synEl.classList.toggle('expanded');
+      synToggle.textContent = open ? 'Show less' : 'Read more';
+    });
+
+    /* ── Trailer button scrolls to trailer section */
+    document.getElementById('detailTrailerBtn').addEventListener('click', () => {
+      document.getElementById('trailerSection').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    /* ── Watchlist toggle */
+    const wlBtn = document.getElementById('detailWatchlistBtn');
+    wlBtn.addEventListener('click', () => {
+      const saved = wlBtn.classList.toggle('watchlisted');
+      wlBtn.innerHTML = saved
+        ? '<span class="material-symbols-rounded button-icon" style="font-variation-settings:\'FILL\' 1">bookmark</span> Saved'
+        : '<span class="material-symbols-rounded button-icon">bookmark</span> Watchlist';
+    });
+
+    /* ─────────────────────────────────────────
+       BROWSE — FILTER LOGIC
+    ───────────────────────────────────────── */
+    const browseCards = Array.from(document.querySelectorAll('#browseGrid .anime-card'));
+    const emptyState  = document.getElementById('browseEmpty');
+    const countEl     = document.getElementById('resultsCount');
+    const activeWrap  = document.getElementById('activeFilters');
+
+    const filters = { search: '', type: '', genre: '', status: '', season: '', year: '', sort: 'TRENDING_DESC' };
+
+    function applyFilters() {
+      const q = filters.search.toLowerCase().trim();
+      let visible = 0;
+      browseCards.forEach(card => {
+        const title = card.querySelector('.card-title')?.textContent.toLowerCase() || '';
+        const sub   = card.querySelector('.card-sub')?.textContent.toLowerCase() || '';
+        const matchSearch = q ? title.includes(q) : true;
+        const matchYear   = filters.year ? sub.includes(filters.year) : true;
+        const show = matchSearch && matchYear;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      emptyState.hidden = visible > 0;
+      countEl.textContent = visible + ' anime';
+      renderChips();
+    }
+
+    function renderChips() {
+      const labels = { search: filters.search, type: filters.type, genre: filters.genre, status: filters.status, season: filters.season, year: filters.year };
+      const chips  = Object.entries(labels).filter(([,v]) => v);
+      activeWrap.hidden = !chips.length;
+      activeWrap.innerHTML = chips.map(([k, v]) =>
+        `<button class="filter-chip" data-key="${k}">${v} <span class="material-symbols-rounded" style="font-size:14px;vertical-align:-2px">close</span></button>`
+      ).join('');
+      activeWrap.querySelectorAll('.filter-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const k = btn.dataset.key;
+          filters[k] = '';
+          const el = document.getElementById(k + 'Filter');
+          if (el) el.value = '';
+          applyFilters();
+        });
+      });
+    }
+
+    function resetFilters() {
+      Object.keys(filters).forEach(k => { filters[k] = k === 'sort' ? 'TRENDING_DESC' : ''; });
+      document.querySelectorAll('.filter-select').forEach(s => s.selectedIndex = 0);
+      document.getElementById('searchFilter').value = '';
+      applyFilters();
+    }
+
+    /* Year dropdown */
+    const yearSel = document.getElementById('yearFilter');
+    for (let y = 2025; y >= 1960; y--) {
+      const o = document.createElement('option');
+      o.value = y; o.textContent = y;
+      yearSel.appendChild(o);
+    }
+
+    let debounce;
+    document.getElementById('searchFilter').addEventListener('input', e => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => { filters.search = e.target.value; applyFilters(); }, 350);
+    });
+    ['type','genre','status','season','year','sort'].forEach(k => {
+      document.getElementById(k + 'Filter').addEventListener('change', e => {
+        filters[k] = e.target.value; applyFilters();
+      });
+    });
+
+    document.getElementById('filterReset').addEventListener('click', resetFilters);
+    document.getElementById('emptyReset').addEventListener('click', resetFilters);
+
+    /* Mobile filter panel toggle */
+    const ftMob  = document.getElementById('filterToggleMob');
+    const fb     = document.getElementById('filterBar');
+    const ftIcon = document.getElementById('filterToggleIcon');
+    const ftLbl  = document.getElementById('filterToggleLabel');
+    ftMob.addEventListener('click', () => {
+      const open = fb.classList.toggle('filters-open');
+      ftMob.setAttribute('aria-expanded', open);
+      ftIcon.textContent = open ? 'filter_alt_off' : 'tune';
+      ftLbl.textContent  = open ? 'Hide filters'   : 'Filters';
+      ftMob.classList.toggle('filter-toggle-mob--active', open);
+    });
+
+    countEl.textContent = browseCards.length + ' anime';
+
+  </script>
+
+</body>
+</html>
