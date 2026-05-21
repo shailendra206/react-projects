@@ -18,7 +18,7 @@
   <nav class="navbar">
     <a href="#" class="logo" id="logoLink">
       <span class="logo-jp">見たい</span>
-      <span class="logo-en">mitai</span>
+      <span class="logo-en">Mitai</span>
     </a>
     <div class="nav-search">
       <span class="material-symbols-rounded nav-icon" aria-hidden="true">search</span>
@@ -29,12 +29,12 @@
     </div>
     <div class="nav-links">
       <button class="nav-icon-btn nav-browse-btn" id="navBrowseBtn" title="Browse" aria-label="Browse">
-        <span class="material-symbols-rounded nav-icon" aria-hidden="true">grid_view</span>
+        <span class="material-symbols-rounded nav-icon" aria-hidden="true">filter_alt</span>
       </button>
       <button class="nav-icon-btn nav-watchlist" title="Watchlist" aria-label="Watchlist">
         <span class="material-symbols-rounded nav-icon" aria-hidden="true">bookmark</span>
       </button>
-      <button class="nav-icon-btn mobile-search-toggle" id="mobileSearchToggle" type="button" aria-label="Open search">
+      <button class="nav-icon-btn mobile-search-toggle" id="mobileSearchToggle" type="button" aria-label="Open search" style="display:none">
         <span class="material-symbols-rounded nav-icon" aria-hidden="true">search</span>
       </button>
       <button class="nav-icon-btn theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">
@@ -103,7 +103,57 @@
     </section>
 
     <!-- MAIN ROWS -->
-    <main class="main">
+    <main class="main" id="homeMain">
+
+      <!-- HOME ERROR STATE (shown when API fails to load) -->
+      <div class="home-error" id="homeError" hidden>
+        <!-- Illustrated SVG -->
+        <div class="home-error-art" aria-hidden="true">
+          <svg viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg" class="home-error-svg">
+            <!-- Screen / TV body -->
+            <rect x="30" y="28" width="160" height="104" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+            <rect x="38" y="36" width="144" height="88" rx="6" fill="var(--surface)"/>
+            <!-- Stand -->
+            <rect x="96" y="132" width="28" height="6" rx="3" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+            <rect x="78" y="138" width="64" height="7" rx="3.5" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+            <!-- Warning triangle -->
+            <path d="M110 46 L136 90 L84 90 Z" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round" opacity="0.9"/>
+            <!-- Exclamation mark -->
+            <rect x="108" y="60" width="4" height="16" rx="2" fill="var(--accent)" opacity="0.85"/>
+            <circle cx="110" cy="82" r="2.5" fill="var(--accent)" opacity="0.85"/>
+            <!-- Disconnect plug left -->
+            <line x1="56" y1="108" x2="72" y2="108" stroke="var(--text-subtle)" stroke-width="2" stroke-linecap="round"/>
+            <rect x="72" y="104" width="10" height="8" rx="2" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.2"/>
+            <!-- Gap -->
+            <!-- Disconnect plug right -->
+            <rect x="88" y="104" width="10" height="8" rx="2" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.2"/>
+            <line x1="98" y1="108" x2="114" y2="108" stroke="var(--text-subtle)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Ambient dots -->
+            <circle cx="182" cy="36" r="3" fill="var(--accent)" opacity="0.4"/>
+            <circle cx="193" cy="50" r="2" fill="var(--accent)" opacity="0.25"/>
+            <circle cx="36" cy="40" r="2.5" fill="var(--accent)" opacity="0.3"/>
+            <circle cx="28" cy="54" r="1.5" fill="var(--accent)" opacity="0.2"/>
+          </svg>
+        </div>
+
+        <div class="home-error-text">
+          <h2 class="home-error-title">Something went <em>wrong</em></h2>
+          <p class="home-error-sub">We couldn&rsquo;t reach the server to load anime.<br/>Check your connection and try again.</p>
+        </div>
+
+        <div class="home-error-actions">
+          <button class="btn-primary" id="homeErrorRetry">
+            <span class="material-symbols-rounded button-icon">refresh</span>
+            Retry
+          </button>
+          <button class="btn-ghost" onclick="showPage('browse')">
+            <span class="material-symbols-rounded button-icon">grid_view</span>
+            Browse Cached
+          </button>
+        </div>
+
+        <p class="home-error-code" id="homeErrorCode"></p>
+      </div>
 
       <!-- TRENDING -->
       <section class="row-section">
@@ -188,11 +238,6 @@
           </button>
         </div>
 
-        <button class="filter-toggle-mob" id="filterToggleMob" type="button" aria-expanded="false">
-          <span class="material-symbols-rounded" style="font-size:18px" id="filterToggleIcon">tune</span>
-          <span id="filterToggleLabel">Filters</span>
-        </button>
-
         <div class="filter-bar" id="filterBar">
           <div class="filter-input-wrap">
             <span class="material-symbols-rounded filter-input-icon">search</span>
@@ -257,6 +302,11 @@
           </div>
         </div>
 
+        <button class="filter-toggle-mob" id="filterToggleMob" type="button" aria-expanded="false">
+          <span class="material-symbols-rounded" style="font-size:18px" id="filterToggleIcon">tune</span>
+          <span id="filterToggleLabel">Filters</span>
+        </button>
+
         <div class="active-filters" id="activeFilters" hidden></div>
       </div>
 
@@ -281,6 +331,17 @@
         <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx162804-FWnXmXMRQMPQ.jpg" loading="lazy" alt="K8"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-airing">Airing</span><span class="card-type-badge">TV</span></div><p class="card-title">Kaijuu 8-gou</p><span class="card-sub">Ongoing · 2024</span></div>
         <div class="anime-card"><div class="card-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx100526-JuJSBBRTl09E.jpg" loading="lazy" alt="MHA"/><div class="card-hover"><span class="card-score"><span class="material-symbols-rounded rating-icon">star</span>8.1</span><button class="card-save"><span class="material-symbols-rounded save-icon">bookmark</span></button></div><span class="card-type-badge">TV</span></div><p class="card-title">My Hero Academia</p><span class="card-sub">113 ep · 2016</span></div>
 
+        <!-- PAGINATION -->
+        <nav class="browse-pagination" id="browsePagination" aria-label="Browse pages">
+          <button class="pg-btn pg-arrow" id="pgPrev" aria-label="Previous page" disabled>
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+          <div class="pg-pages" id="pgPages"></div>
+          <button class="pg-btn pg-arrow" id="pgNext" aria-label="Next page">
+            <span class="material-symbols-rounded">chevron_right</span>
+          </button>
+        </nav>
+
         <div class="browse-empty" id="browseEmpty" hidden>
           <span class="material-symbols-rounded browse-empty-icon">search_off</span>
           <p class="browse-empty-title">No results found</p>
@@ -289,12 +350,14 @@
         </div>
       </div>
 
+      <!--
       <div class="load-more-wrap">
         <button class="btn-ghost load-more-btn" type="button">
           Load more
           <span class="material-symbols-rounded text-icon">expand_more</span>
         </button>
       </div>
+      -->
 
     </div>
   </div><!-- /page-browse -->
@@ -312,7 +375,8 @@
         <img
           class="detail-banner-img"
           src="https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-RtgLkOgSDgYb.jpg"
-          alt="Fullmetal Alchemist: Brotherhood banner"
+          alt=""
+          onerror="this.style.display='none'"
         />
         <div class="detail-banner-gradient"></div>
       </div>
@@ -322,7 +386,8 @@
         <img
           class="detail-poster"
           src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-KJTQz9AIRpIM.jpg"
-          alt="FMA Brotherhood poster"
+          alt=""
+          onerror="this.src='https://placehold.co/190x285/1e1f28/c8a96e?text=Mitai'"
         />
 
         <div class="detail-hero-text">
@@ -385,6 +450,8 @@
     <!-- ── DETAIL BODY ─────────────────────────────────────── -->
     <div class="detail-body">
 
+      <div class="detail-main">
+
       <!-- ── 2. SYNOPSIS ───────────────────────────────────── -->
       <section class="detail-section">
         <h2 class="detail-section-title">Synopsis</h2>
@@ -407,138 +474,71 @@
         </div>
       </section>
 
-      <!-- ── 4. CHARACTERS + STAFF (two-col) ──────────────── -->
-      <div class="detail-two-col">
-
-        <!-- Characters -->
-        <section class="detail-section">
-          <h2 class="detail-section-title">Characters</h2>
-          <div class="person-row">
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b11-qHJigyTnBiDX.png" alt="Edward Elric" loading="lazy" />
-              </div>
-              <p class="person-name">Edward Elric</p>
-              <p class="person-role main">MAIN</p>
-              <p class="person-va">Romi Park</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b12-6qhEjJ5JXBI4.png" alt="Alphonse Elric" loading="lazy" />
-              </div>
-              <p class="person-name">Alphonse Elric</p>
-              <p class="person-role main">MAIN</p>
-              <p class="person-va">Rie Kugimiya</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b13-6XNrLWuEPiRT.png" alt="Roy Mustang" loading="lazy" />
-              </div>
-              <p class="person-name">Roy Mustang</p>
-              <p class="person-role main">MAIN</p>
-              <p class="person-va">Shinichiro Miki</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b14-0CiJjvIjlrYi.png" alt="Winry Rockbell" loading="lazy" />
-              </div>
-              <p class="person-name">Winry Rockbell</p>
-              <p class="person-role main">MAIN</p>
-              <p class="person-va">Megumi Toyoguchi</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b46274-BYdJBViTv0Gr.png" alt="Riza Hawkeye" loading="lazy" />
-              </div>
-              <p class="person-name">Riza Hawkeye</p>
-              <p class="person-role">SUPPORTING</p>
-              <p class="person-va">Fumiko Orikasa</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b522-IrxHiXiMkqhL.png" alt="Scar" loading="lazy" />
-              </div>
-              <p class="person-name">Scar</p>
-              <p class="person-role">SUPPORTING</p>
-              <p class="person-va">Ryotaro Okiayu</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b46272-V8B5X5e2b1Lg.png" alt="Greed" loading="lazy" />
-              </div>
-              <p class="person-name">Greed</p>
-              <p class="person-role">SUPPORTING</p>
-              <p class="person-va">Yuichi Nakamura</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/character/large/b46276-VJbwBhKKhraM.png" alt="Olivier Armstrong" loading="lazy" />
-              </div>
-              <p class="person-name">Olivier Armstrong</p>
-              <p class="person-role">SUPPORTING</p>
-              <p class="person-va">Yoko Soumi</p>
-            </div>
-
+      <!-- ── 4. CHARACTERS ─────────────────────────────── -->
+      <section class="detail-section">
+        <h2 class="detail-section-title">Characters</h2>
+        <div class="person-row">
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/character/large/b11-qHJigyTnBiDX.png" alt="Edward Elric" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=E'"/></div>
+            <p class="person-name">Edward Elric</p><p class="person-va">Romi Park</p>
           </div>
-        </section>
-
-        <!-- Staff -->
-        <section class="detail-section">
-          <h2 class="detail-section-title">Staff</h2>
-          <div class="person-row">
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n95623-pntRaLMVPAVE.png" alt="Yasuhiro Irie" loading="lazy" />
-              </div>
-              <p class="person-name">Yasuhiro Irie</p>
-              <p class="person-role">Director</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n97548-9y7HBk5VQZQ2.png" alt="Hiroshi Onogi" loading="lazy" />
-              </div>
-              <p class="person-name">Hiroshi Onogi</p>
-              <p class="person-role">Script</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n97001-bNPijCQ7F1FO.png" alt="Akira Senju" loading="lazy" />
-              </div>
-              <p class="person-name">Akira Senju</p>
-              <p class="person-role">Music</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n95686-mO5AhCRvnMlS.png" alt="Hiroki Kanno" loading="lazy" />
-              </div>
-              <p class="person-name">Hiroki Kanno</p>
-              <p class="person-role">Character Design</p>
-            </div>
-
-            <div class="person-card">
-              <div class="person-img-wrap">
-                <img src="https://s4.anilist.co/file/anilistcdn/staff/large/n96049-WQLfgq4vBvVS.png" alt="Bones Studio" loading="lazy" />
-              </div>
-              <p class="person-name">Bones</p>
-              <p class="person-role">Animation Studio</p>
-            </div>
-
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/character/large/b12-6qhEjJ5JXBI4.png" alt="Alphonse Elric" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=A'"/></div>
+            <p class="person-name">Alphonse Elric</p><p class="person-va">Rie Kugimiya</p>
           </div>
-        </section>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/character/large/b13-6XNrLWuEPiRT.png" alt="Roy Mustang" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=R'"/></div>
+            <p class="person-name">Roy Mustang</p><p class="person-va">Shinichiro Miki</p>
+          </div>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/character/large/b14-0CiJjvIjlrYi.png" alt="Winry Rockbell" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=W'"/></div>
+            <p class="person-name">Winry Rockbell</p><p class="person-va">Megumi Toyoguchi</p>
+          </div>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/character/large/b46274-BYdJBViTv0Gr.png" alt="Riza Hawkeye" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=R'"/></div>
+            <p class="person-name">Riza Hawkeye</p><p class="person-va">Fumiko Orikasa</p>
+          </div>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/character/large/b522-IrxHiXiMkqhL.png" alt="Scar" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=S'"/></div>
+            <p class="person-name">Scar</p><p class="person-va">Ryotaro Okiayu</p>
+          </div>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/character/large/b46272-V8B5X5e2b1Lg.png" alt="Greed" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=G'"/></div>
+            <p class="person-name">Greed</p><p class="person-va">Yuichi Nakamura</p>
+          </div>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/character/large/b46276-VJbwBhKKhraM.png" alt="Olivier Armstrong" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=O'"/></div>
+            <p class="person-name">Olivier Armstrong</p><p class="person-va">Yoko Soumi</p>
+          </div>
+        </div>
+      </section>
 
-      </div><!-- /detail-two-col -->
+      <!-- ── 5. STAFF ───────────────────────────────────── -->
+      <section class="detail-section">
+        <h2 class="detail-section-title">Staff</h2>
+        <div class="person-row">
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/staff/large/n95623-pntRaLMVPAVE.png" alt="Yasuhiro Irie" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=Y'"/></div>
+            <p class="person-name">Yasuhiro Irie</p><p class="person-role">Director</p>
+          </div>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/staff/large/n97548-9y7HBk5VQZQ2.png" alt="Hiroshi Onogi" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=H'"/></div>
+            <p class="person-name">Hiroshi Onogi</p><p class="person-role">Script</p>
+          </div>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/staff/large/n97001-bNPijCQ7F1FO.png" alt="Akira Senju" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=A'"/></div>
+            <p class="person-name">Akira Senju</p><p class="person-role">Music</p>
+          </div>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/staff/large/n95686-mO5AhCRvnMlS.png" alt="Hiroki Kanno" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=H'"/></div>
+            <p class="person-name">Hiroki Kanno</p><p class="person-role">Character Design</p>
+          </div>
+          <div class="person-card">
+            <div class="person-img-wrap"><img src="https://s4.anilist.co/file/anilistcdn/staff/large/n96049-WQLfgq4vBvVS.png" alt="Bones" loading="lazy" onerror="this.src='https://placehold.co/72x72/1e1f28/c8a96e?text=B'"/></div>
+            <p class="person-name">Bones</p><p class="person-role">Animation Studio</p>
+          </div>
+        </div>
+      </section>
 
       <!-- ── 5. RELATIONS ──────────────────────────────────── -->
       <section class="detail-section">
@@ -580,8 +580,10 @@
         </div>
       </section>
 
-      <!-- ── 6. INFO + TAGS (two-col) ──────────────────────── -->
-      <div class="detail-two-col">
+      </div><!-- /detail-main -->
+
+      <!-- SIDEBAR -->
+      <aside class="detail-sidebar">
 
         <!-- Info sidebar -->
         <section class="detail-section">
@@ -657,10 +659,238 @@
           </div>
         </section>
 
-      </div><!-- /detail-two-col -->
+      </aside><!-- /detail-sidebar -->
 
     </div><!-- /detail-body -->
+  <!-- ── DETAIL EMPTY / NOT-FOUND STATE ─────────────────── -->
+  <div class="detail-empty" id="detailEmpty" hidden>
+    <div class="detail-empty-art" aria-hidden="true">
+      <svg viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="detail-empty-svg">
+        <!-- Big broken poster -->
+        <rect x="60" y="30" width="90" height="130" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+        <!-- Crack lines on poster -->
+        <path d="M105 50 L95 75 L108 75 L98 110" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+        <!-- Broken image icon -->
+        <circle cx="105" cy="92" r="18" fill="var(--accent-dim)" stroke="var(--accent-glow)" stroke-width="1"/>
+        <path d="M97 100 L101 92 L106 97 L111 88 L116 100Z" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round" opacity="0.6"/>
+        <path d="M97 100 L116 100" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+        <!-- Question mark circle -->
+        <circle cx="175" cy="68" r="30" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5"/>
+        <text x="175" y="76" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="28" fill="var(--accent)" opacity="0.7" font-style="italic">?</text>
+        <!-- Small dots decoration -->
+        <circle cx="46" cy="42" r="3" fill="var(--accent)" opacity="0.4"/>
+        <circle cx="38" cy="58" r="2" fill="var(--accent)" opacity="0.25"/>
+        <circle cx="218" cy="110" r="3.5" fill="var(--accent)" opacity="0.35"/>
+        <circle cx="228" cy="96" r="2" fill="var(--accent)" opacity="0.2"/>
+        <!-- Ground shadow -->
+        <ellipse cx="125" cy="172" rx="70" ry="7" fill="var(--surface-2)" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <div class="detail-empty-text">
+      <h2 class="detail-empty-title">Anime Not Found</h2>
+      <p class="detail-empty-sub">We couldn&rsquo;t load the details for this title.<br/>It may have moved or doesn&rsquo;t exist in our library.</p>
+    </div>
+
+    <div class="detail-empty-actions">
+      <button class="btn-primary" onclick="showPage('browse')">
+        <span class="material-symbols-rounded button-icon">grid_view</span>
+        Browse Anime
+      </button>
+      <button class="btn-ghost" onclick="showPage('home')">
+        <span class="material-symbols-rounded button-icon">home</span>
+        Go Home
+      </button>
+    </div>
+  </div>
+
   </div><!-- /page-detail -->
+
+
+  <!-- ═══════════════════════════════════════
+       PAGE: WATCHLIST
+  ═══════════════════════════════════════ -->
+  <div id="page-watchlist" hidden>
+    <div class="watchlist-page">
+
+      <!-- TOOLBAR -->
+      <div class="wl-toolbar-section">
+        <div class="wl-header">
+          <div class="wl-title-group">
+            <h1 class="wl-title">Watchlist</h1>
+            <span class="wl-count">8 titles</span>
+          </div>
+          <div class="wl-controls">
+            <div class="wl-search-wrap">
+              <span class="material-symbols-rounded wl-search-icon">search</span>
+              <input type="text" class="wl-search-input" id="wlSearchInput" placeholder="Search your list..." autocomplete="off" />
+            </div>
+            <div class="filter-select-wrap">
+              <select class="filter-select" id="wlSort">
+                <option value="date">Date added</option>
+                <option value="title">Title A–Z</option>
+                <option value="score">Score</option>
+              </select>
+              <span class="material-symbols-rounded filter-chevron">expand_more</span>
+            </div>
+          </div>
+        </div>
+        <!-- STATUS TABS -->
+        <div class="wl-status-tabs" id="wlStatusTabs">
+          <button class="wl-tab wl-tab--active" data-tab="all">All <span class="wl-tab-count">8</span></button>
+          <button class="wl-tab" data-tab="watching">Watching <span class="wl-tab-count">3</span></button>
+          <button class="wl-tab" data-tab="plan">Plan to Watch <span class="wl-tab-count">1</span></button>
+          <button class="wl-tab" data-tab="completed">Completed <span class="wl-tab-count">3</span></button>
+          <button class="wl-tab" data-tab="dropped">Dropped <span class="wl-tab-count">0</span></button>
+          <button class="wl-tab" data-tab="hold">On Hold <span class="wl-tab-count">1</span></button>
+        </div>
+      </div>
+
+      <!-- ANIME GRID -->
+      <div class="wl-grid" id="wlGrid">
+
+        <div class="anime-card wl-card" data-detail data-status="completed">
+          <div class="card-img-wrap">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-KJTQz9AIRpIM.jpg" loading="lazy" alt="FMA Brotherhood"/>
+            <button class="wl-menu-btn" aria-label="Options"><span class="material-symbols-rounded">more_vert</span></button>
+            <div class="wl-menu-dropdown">
+              <button class="wl-menu-item" data-status="watching"><span class="wl-menu-dot wl-dot--watching"></span>Watching</button>
+              <button class="wl-menu-item" data-status="plan"><span class="wl-menu-dot wl-dot--plan"></span>Plan to Watch</button>
+              <button class="wl-menu-item wl-menu-item--active" data-status="completed"><span class="wl-menu-dot wl-dot--completed"></span>Completed</button>
+              <button class="wl-menu-item" data-status="dropped"><span class="wl-menu-dot wl-dot--dropped"></span>Dropped</button>
+              <button class="wl-menu-item" data-status="hold"><span class="wl-menu-dot wl-dot--hold"></span>On Hold</button>
+            </div>
+          </div>
+          <p class="card-title">Fullmetal Alchemist: Brotherhood</p>
+          <span class="card-sub">TV · 64 ep</span>
+        </div>
+
+        <div class="anime-card wl-card" data-status="watching">
+          <div class="card-img-wrap">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11757-sFYqlvTDNjto.jpg" loading="lazy" alt="Steins;Gate"/>
+            <button class="wl-menu-btn" aria-label="Options"><span class="material-symbols-rounded">more_vert</span></button>
+            <div class="wl-menu-dropdown">
+              <button class="wl-menu-item wl-menu-item--active" data-status="watching"><span class="wl-menu-dot wl-dot--watching"></span>Watching</button>
+              <button class="wl-menu-item" data-status="plan"><span class="wl-menu-dot wl-dot--plan"></span>Plan to Watch</button>
+              <button class="wl-menu-item" data-status="completed"><span class="wl-menu-dot wl-dot--completed"></span>Completed</button>
+              <button class="wl-menu-item" data-status="dropped"><span class="wl-menu-dot wl-dot--dropped"></span>Dropped</button>
+              <button class="wl-menu-item" data-status="hold"><span class="wl-menu-dot wl-dot--hold"></span>On Hold</button>
+            </div>
+          </div>
+          <p class="card-title">Steins;Gate</p>
+          <span class="card-sub">TV · 24 ep</span>
+        </div>
+
+        <div class="anime-card wl-card" data-status="completed">
+          <div class="card-img-wrap">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-C3H9KcQPJBkX.jpg" loading="lazy" alt="Attack on Titan"/>
+            <button class="wl-menu-btn" aria-label="Options"><span class="material-symbols-rounded">more_vert</span></button>
+            <div class="wl-menu-dropdown">
+              <button class="wl-menu-item" data-status="watching"><span class="wl-menu-dot wl-dot--watching"></span>Watching</button>
+              <button class="wl-menu-item" data-status="plan"><span class="wl-menu-dot wl-dot--plan"></span>Plan to Watch</button>
+              <button class="wl-menu-item wl-menu-item--active" data-status="completed"><span class="wl-menu-dot wl-dot--completed"></span>Completed</button>
+              <button class="wl-menu-item" data-status="dropped"><span class="wl-menu-dot wl-dot--dropped"></span>Dropped</button>
+              <button class="wl-menu-item" data-status="hold"><span class="wl-menu-dot wl-dot--hold"></span>On Hold</button>
+            </div>
+          </div>
+          <p class="card-title">Attack on Titan</p>
+          <span class="card-sub">TV · 25 ep</span>
+        </div>
+
+        <div class="anime-card wl-card" data-status="completed">
+          <div class="card-img-wrap">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-lawCwhHMCPHD.jpg" loading="lazy" alt="Death Note"/>
+            <button class="wl-menu-btn" aria-label="Options"><span class="material-symbols-rounded">more_vert</span></button>
+            <div class="wl-menu-dropdown">
+              <button class="wl-menu-item" data-status="watching"><span class="wl-menu-dot wl-dot--watching"></span>Watching</button>
+              <button class="wl-menu-item" data-status="plan"><span class="wl-menu-dot wl-dot--plan"></span>Plan to Watch</button>
+              <button class="wl-menu-item wl-menu-item--active" data-status="completed"><span class="wl-menu-dot wl-dot--completed"></span>Completed</button>
+              <button class="wl-menu-item" data-status="dropped"><span class="wl-menu-dot wl-dot--dropped"></span>Dropped</button>
+              <button class="wl-menu-item" data-status="hold"><span class="wl-menu-dot wl-dot--hold"></span>On Hold</button>
+            </div>
+          </div>
+          <p class="card-title">Death Note</p>
+          <span class="card-sub">TV · 37 ep</span>
+        </div>
+
+        <div class="anime-card wl-card" data-status="watching">
+          <div class="card-img-wrap">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-PEn1CTc93blC.jpg" loading="lazy" alt="Demon Slayer"/>
+            <button class="wl-menu-btn" aria-label="Options"><span class="material-symbols-rounded">more_vert</span></button>
+            <div class="wl-menu-dropdown">
+              <button class="wl-menu-item wl-menu-item--active" data-status="watching"><span class="wl-menu-dot wl-dot--watching"></span>Watching</button>
+              <button class="wl-menu-item" data-status="plan"><span class="wl-menu-dot wl-dot--plan"></span>Plan to Watch</button>
+              <button class="wl-menu-item" data-status="completed"><span class="wl-menu-dot wl-dot--completed"></span>Completed</button>
+              <button class="wl-menu-item" data-status="dropped"><span class="wl-menu-dot wl-dot--dropped"></span>Dropped</button>
+              <button class="wl-menu-item" data-status="hold"><span class="wl-menu-dot wl-dot--hold"></span>On Hold</button>
+            </div>
+          </div>
+          <p class="card-title">Demon Slayer</p>
+          <span class="card-sub">TV · 26 ep</span>
+        </div>
+
+        <div class="anime-card wl-card" data-status="plan">
+          <div class="card-img-wrap">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx31240-pfSBnQVMujnS.jpg" loading="lazy" alt="Re:Zero"/>
+            <button class="wl-menu-btn" aria-label="Options"><span class="material-symbols-rounded">more_vert</span></button>
+            <div class="wl-menu-dropdown">
+              <button class="wl-menu-item" data-status="watching"><span class="wl-menu-dot wl-dot--watching"></span>Watching</button>
+              <button class="wl-menu-item wl-menu-item--active" data-status="plan"><span class="wl-menu-dot wl-dot--plan"></span>Plan to Watch</button>
+              <button class="wl-menu-item" data-status="completed"><span class="wl-menu-dot wl-dot--completed"></span>Completed</button>
+              <button class="wl-menu-item" data-status="dropped"><span class="wl-menu-dot wl-dot--dropped"></span>Dropped</button>
+              <button class="wl-menu-item" data-status="hold"><span class="wl-menu-dot wl-dot--hold"></span>On Hold</button>
+            </div>
+          </div>
+          <p class="card-title">Re:Zero</p>
+          <span class="card-sub">TV · 25 ep</span>
+        </div>
+
+        <div class="anime-card wl-card" data-status="hold">
+          <div class="card-img-wrap">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg" loading="lazy" alt="Hunter x Hunter"/>
+            <button class="wl-menu-btn" aria-label="Options"><span class="material-symbols-rounded">more_vert</span></button>
+            <div class="wl-menu-dropdown">
+              <button class="wl-menu-item" data-status="watching"><span class="wl-menu-dot wl-dot--watching"></span>Watching</button>
+              <button class="wl-menu-item" data-status="plan"><span class="wl-menu-dot wl-dot--plan"></span>Plan to Watch</button>
+              <button class="wl-menu-item" data-status="completed"><span class="wl-menu-dot wl-dot--completed"></span>Completed</button>
+              <button class="wl-menu-item" data-status="dropped"><span class="wl-menu-dot wl-dot--dropped"></span>Dropped</button>
+              <button class="wl-menu-item wl-menu-item--active" data-status="hold"><span class="wl-menu-dot wl-dot--hold"></span>On Hold</button>
+            </div>
+          </div>
+          <p class="card-title">Hunter x Hunter</p>
+          <span class="card-sub">TV · 148 ep</span>
+        </div>
+
+        <div class="anime-card wl-card" data-status="watching">
+          <div class="card-img-wrap">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx141258-tTWWN0cMJblN.jpg" loading="lazy" alt="Frieren"/>
+            <button class="wl-menu-btn" aria-label="Options"><span class="material-symbols-rounded">more_vert</span></button>
+            <div class="wl-menu-dropdown">
+              <button class="wl-menu-item wl-menu-item--active" data-status="watching"><span class="wl-menu-dot wl-dot--watching"></span>Watching</button>
+              <button class="wl-menu-item" data-status="plan"><span class="wl-menu-dot wl-dot--plan"></span>Plan to Watch</button>
+              <button class="wl-menu-item" data-status="completed"><span class="wl-menu-dot wl-dot--completed"></span>Completed</button>
+              <button class="wl-menu-item" data-status="dropped"><span class="wl-menu-dot wl-dot--dropped"></span>Dropped</button>
+              <button class="wl-menu-item" data-status="hold"><span class="wl-menu-dot wl-dot--hold"></span>On Hold</button>
+            </div>
+          </div>
+          <p class="card-title">Frieren: Beyond Journey's End</p>
+          <span class="card-sub">TV · Ongoing</span>
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div class="wl-empty" id="wlEmpty" hidden>
+          <span class="material-symbols-rounded wl-empty-icon">bookmark</span>
+          <p class="wl-empty-title">Your watchlist is empty</p>
+          <p class="wl-empty-sub">Save anime you want to watch and track your progress here</p>
+          <button class="btn-primary" onclick="showPage('browse')">
+            <span class="material-symbols-rounded button-icon">grid_view</span>
+            Browse Anime
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /page-watchlist -->
 
 
   <!-- ═══════════════════════════════════════
@@ -668,7 +898,7 @@
   ═══════════════════════════════════════ -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo">見たい <em>mitai</em></div>
+      <div class="footer-logo">見たい <em>Mitai</em></div>
       <p class="footer-tagline">Discover what to watch next.</p>
       <p class="footer-credit">Data powered by AniList · Built by Shailendra Goswami</p>
     </div>
@@ -699,9 +929,10 @@
        PAGE ROUTER
     ───────────────────────────────────────── */
     const pages = {
-      home:   document.getElementById('page-home'),
-      browse: document.getElementById('page-browse'),
-      detail: document.getElementById('page-detail'),
+      home:      document.getElementById('page-home'),
+      browse:    document.getElementById('page-browse'),
+      detail:    document.getElementById('page-detail'),
+      watchlist: document.getElementById('page-watchlist'),
     };
 
     function showPage(name, query = '') {
@@ -709,6 +940,7 @@
       pages[name].hidden = false;
       window.scrollTo({ top: 0, behavior: 'smooth' });
       document.getElementById('navBrowseBtn').classList.toggle('nav-icon-btn--active', name === 'browse');
+      document.querySelector('.nav-watchlist').classList.toggle('nav-icon-btn--active', name === 'watchlist');
 
       if (name === 'browse' && query) {
         const sf = document.getElementById('searchFilter');
@@ -727,19 +959,32 @@
     /* ── Browse btn */
     document.getElementById('navBrowseBtn').addEventListener('click', () => showPage('browse'));
 
+    /* ── Watchlist btn */
+    document.querySelector('.nav-watchlist').addEventListener('click', () => showPage('watchlist'));
+
     /* ── "View all" links */
     document.querySelectorAll('.show-browse').forEach(a => {
       a.addEventListener('click', e => { e.preventDefault(); showPage('browse'); });
     });
 
-    /* ── Navbar search → browse */
+    /* ── Navbar search → browse or show home empty ─── */
     nsi.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         const q = nsi.value.trim();
-        showPage('browse', q);
+        if (q) {
+          showPage('browse', q);
+        }
         document.body.classList.remove('search-open');
         nsi.value = '';
       }
+    });
+
+    /* ── Home error retry ────────────────────────────── */
+    document.getElementById('homeErrorRetry').addEventListener('click', () => {
+      // In a real app this would re-fetch from the API.
+      // For now just hide the error state and show the rows.
+      document.getElementById('homeError').hidden = true;
+      document.getElementById('homeMain').querySelectorAll('.row-section').forEach(s => s.hidden = false);
     });
 
     /* ── Any card with [data-detail] → open detail page */
@@ -755,9 +1000,21 @@
     const synEl     = document.getElementById('detailSynopsis');
     const synToggle = document.getElementById('synopsisToggle');
 
+    function checkSynopsisOverflow() {
+      // scrollHeight > clientHeight means the text is clamped
+      if (synEl.scrollHeight > synEl.clientHeight + 2) {
+        synToggle.classList.add('visible');
+      } else {
+        synToggle.classList.remove('visible');
+      }
+    }
+    checkSynopsisOverflow();
+    window.addEventListener('resize', checkSynopsisOverflow);
+
     synToggle.addEventListener('click', () => {
       const open = synEl.classList.toggle('expanded');
       synToggle.textContent = open ? 'Show less' : 'Read more';
+      if (!open) checkSynopsisOverflow();
     });
 
     /* ── Trailer button scrolls to trailer section */
@@ -784,21 +1041,79 @@
 
     const filters = { search: '', type: '', genre: '', status: '', season: '', year: '', sort: 'TRENDING_DESC' };
 
-    function applyFilters() {
+    /* ─────────────────────────────────────────
+       BROWSE — PAGINATION
+    ───────────────────────────────────────── */
+    const ITEMS_PER_PAGE = 14;
+    let currentPage = 1;
+
+    function getFilteredCards() {
       const q = filters.search.toLowerCase().trim();
-      let visible = 0;
-      browseCards.forEach(card => {
+      return browseCards.filter(card => {
         const title = card.querySelector('.card-title')?.textContent.toLowerCase() || '';
-        const sub   = card.querySelector('.card-sub')?.textContent.toLowerCase() || '';
-        const matchSearch = q ? title.includes(q) : true;
-        const matchYear   = filters.year ? sub.includes(filters.year) : true;
-        const show = matchSearch && matchYear;
-        card.hidden = !show;
-        if (show) visible++;
+        const sub   = card.querySelector('.card-sub')?.textContent.toLowerCase()  || '';
+        return (q ? title.includes(q) : true) && (filters.year ? sub.includes(filters.year) : true);
       });
-      emptyState.hidden = visible > 0;
-      countEl.textContent = visible + ' anime';
+    }
+
+    function renderPage() {
+      const filtered   = getFilteredCards();
+      const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+      currentPage      = Math.min(currentPage, totalPages);
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const end   = start + ITEMS_PER_PAGE;
+
+      browseCards.forEach(card => {
+        const idx = filtered.indexOf(card);
+        card.hidden = idx === -1 || idx < start || idx >= end;
+      });
+
+      emptyState.hidden = filtered.length > 0;
+      countEl.textContent = filtered.length + ' anime';
       renderChips();
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+      const pgWrap  = document.getElementById('browsePagination');
+      const pgPages = document.getElementById('pgPages');
+      const pgPrev  = document.getElementById('pgPrev');
+      const pgNext  = document.getElementById('pgNext');
+
+      pgWrap.hidden   = totalPages <= 1;
+      pgPrev.disabled = currentPage === 1;
+      pgNext.disabled = currentPage === totalPages;
+
+      pgPages.innerHTML = '';
+      getPageRange(currentPage, totalPages).forEach(p => {
+        if (p === '...') {
+          const s = document.createElement('span');
+          s.className = 'pg-ellipsis'; s.textContent = '…';
+          pgPages.appendChild(s);
+        } else {
+          const btn = document.createElement('button');
+          btn.className = 'pg-btn pg-num' + (p === currentPage ? ' pg-num--active' : '');
+          btn.textContent = p;
+          btn.setAttribute('aria-label', 'Page ' + p);
+          btn.addEventListener('click', () => { currentPage = p; renderPage(); });
+          pgPages.appendChild(btn);
+        }
+      });
+    }
+
+    function getPageRange(cur, total) {
+      if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+      const pages = [1];
+      if (cur > 3) pages.push('...');
+      for (let i = Math.max(2, cur - 1); i <= Math.min(total - 1, cur + 1); i++) pages.push(i);
+      if (cur < total - 2) pages.push('...');
+      pages.push(total);
+      return pages;
+    }
+
+    function applyFilters() {
+      currentPage = 1;
+      renderPage();
     }
 
     function renderChips() {
@@ -861,8 +1176,78 @@
       ftMob.classList.toggle('filter-toggle-mob--active', open);
     });
 
-    countEl.textContent = browseCards.length + ' anime';
+    renderPage();
 
+    document.getElementById('pgPrev').addEventListener('click', () => {
+      if (currentPage > 1) { currentPage--; renderPage(); }
+    });
+    document.getElementById('pgNext').addEventListener('click', () => {
+      const totalPages = Math.max(1, Math.ceil(getFilteredCards().length / ITEMS_PER_PAGE));
+      if (currentPage < totalPages) { currentPage++; renderPage(); }
+    });
+
+    /* ─────────────────────────────────────────
+       WATCHLIST — STATUS TABS & 3-DOT MENU
+    ───────────────────────────────────────── */
+    const wlGrid  = document.getElementById('wlGrid');
+    const wlTabs  = document.querySelectorAll('.wl-tab');
+    const wlCards = document.querySelectorAll('.wl-card');
+
+    /* Tab filtering */
+    wlTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        wlTabs.forEach(t => t.classList.remove('wl-tab--active'));
+        tab.classList.add('wl-tab--active');
+        const active = tab.dataset.tab;
+        wlCards.forEach(card => {
+          card.hidden = active !== 'all' && card.dataset.status !== active;
+        });
+      });
+    });
+
+    /* 3-dot menu toggle */
+    document.addEventListener('click', e => {
+      const menuBtn = e.target.closest('.wl-menu-btn');
+      if (menuBtn) {
+        e.stopPropagation();
+        const dropdown = menuBtn.nextElementSibling;
+        const isOpen = dropdown.classList.contains('open');
+        document.querySelectorAll('.wl-menu-dropdown.open').forEach(d => d.classList.remove('open'));
+        document.querySelectorAll('.wl-menu-btn.active').forEach(b => b.classList.remove('active'));
+        if (!isOpen) { dropdown.classList.add('open'); menuBtn.classList.add('active'); }
+        return;
+      }
+      if (!e.target.closest('.wl-menu-dropdown')) {
+        document.querySelectorAll('.wl-menu-dropdown.open').forEach(d => d.classList.remove('open'));
+        document.querySelectorAll('.wl-menu-btn.active').forEach(b => b.classList.remove('active'));
+      }
+    });
+
+    /* Status selection */
+    document.querySelectorAll('.wl-menu-item').forEach(item => {
+      item.addEventListener('click', e => {
+        e.stopPropagation();
+        const card = item.closest('.wl-card');
+        card.dataset.status = item.dataset.status;
+        item.closest('.wl-menu-dropdown').querySelectorAll('.wl-menu-item').forEach(i => i.classList.remove('wl-menu-item--active'));
+        item.classList.add('wl-menu-item--active');
+        item.closest('.wl-menu-dropdown').classList.remove('open');
+        card.querySelector('.wl-menu-btn')?.classList.remove('active');
+        const activeTab = document.querySelector('.wl-tab--active')?.dataset.tab;
+        if (activeTab && activeTab !== 'all' && card.dataset.status !== activeTab) card.hidden = true;
+        updateWlTabCounts();
+      });
+    });
+
+    function updateWlTabCounts() {
+      const counts = { all: 0, watching: 0, plan: 0, completed: 0, dropped: 0, hold: 0 };
+      wlCards.forEach(card => { counts.all++; const s = card.dataset.status; if (s in counts) counts[s]++; });
+      wlTabs.forEach(tab => {
+        const el = tab.querySelector('.wl-tab-count');
+        if (el && tab.dataset.tab in counts) el.textContent = counts[tab.dataset.tab];
+      });
+    }
+    
   </script>
 
 </body>
