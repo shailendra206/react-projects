@@ -1,0 +1,32 @@
+.personCard {
+  flex-shrink: 0; width: 88px;
+  scroll-snap-align: start;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 7px;
+}
+
+.personImgWrap {
+  width: 72px; height: 72px;
+  border-radius: 50%; overflow: hidden;
+  background: var(--surface-2); flex-shrink: 0;
+  border: 2px solid var(--border);
+  transition: border-color 0.2s;
+}
+.personCard:hover .personImgWrap { border-color: var(--accent-glow); }
+.personImgWrap img { width: 100%; height: 100%; object-fit: cover; }
+
+.personName {
+  font-size: 0.72rem; font-weight: 400; color: var(--text);
+  line-height: 1.3; text-align: center;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+.personRole {
+  font-size: 0.62rem; color: var(--text-subtle);
+  text-transform: uppercase; letter-spacing: 0.06em; text-align: center;
+}
+.personVa {
+  font-size: 0.6rem; color: var(--text-subtle); text-align: center;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}

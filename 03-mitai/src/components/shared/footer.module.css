@@ -1,0 +1,23 @@
+/* ─── FOOTER ─────────────────────────────────────────── */
+.footer { border-top: 1px solid var(--border); padding: 24px 52px; transition: border-color 0.35s ease; }
+.footerInner { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.footerLogo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+  font-weight: 300; color: var(--text-muted); letter-spacing: 0.06em;
+}
+.footerLogo em { color: var(--accent); font-style: italic; }
+.footerTagline { font-size: 0.82rem; color: var(--text-subtle); font-weight: 300; letter-spacing: 0.04em; }
+.footerCredit  { font-size: 0.72rem; color: var(--text-subtle); font-weight: 300; letter-spacing: 0.04em; margin-top: 4px; }
+
+@media (max-width: 1279px) {
+  .footer { padding-inline: 40px; }
+}
+@media (max-width: 1024px) {
+  .footer { padding-inline: 28px; }
+}
+@media (max-width: 760px) {
+  .footer { padding: 20px 18px; }
+}
+@media (max-width: 460px) {
+  .footer { padding-inline: 16px; }
+}

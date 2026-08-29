@@ -1,0 +1,167 @@
+.watchlistPage {
+  min-height: 100svh;
+  padding-top: calc(var(--nav-h) + 40px);
+  padding-bottom: 100px;
+}
+
+/* ── Toolbar ────────────────────────────────────────── */
+.wlToolbarSection {
+  padding: 28px 52px 0;
+  background: var(--bg); transition: background 0.35s ease;
+}
+
+.wlHeader {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 20px;
+  flex-wrap: wrap; padding-bottom: 20px;
+}
+
+.wlTitleGroup { display: flex; align-items: baseline; gap: 14px; }
+
+.wlTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 400; color: var(--text);
+  letter-spacing: -0.01em;
+  padding-left: 14px; border-left: 2px solid var(--accent); line-height: 1;
+}
+
+.wlCount { font-size: 0.78rem; font-weight: 300; color: var(--text-subtle); letter-spacing: 0.04em; }
+
+.wlControls { display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; min-width: 0; max-width: 100%; }
+
+.wlSearchWrap {
+  display: flex; align-items: center; gap: 9px;
+  background: var(--surface-2); border-radius: 0;
+  padding: 0 8px; height: 34px;
+  color: var(--text-muted); transition: color 0.2s;
+  flex: 1; min-width: 0;
+}
+.wlSearchWrap:focus-within { color: var(--accent); outline: 1px solid var(--accent-glow); }
+.wlSearchIcon { font-size: 18px; flex-shrink: 0; }
+.wlSearchInput {
+  flex: 1; min-width: 0; background: none; border: none; outline: none;
+  font-family: 'Outfit', sans-serif; font-size: 0.84rem;
+  font-weight: 300; color: var(--text); letter-spacing: 0.02em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.wlSearchInput::placeholder { color: var(--text-subtle); }
+
+.wlSortWrap { position: relative; flex-shrink: 0; }
+.wlSortSelect {
+  appearance: none; -webkit-appearance: none;
+  background: var(--surface-2); border: none; border-radius: 0;
+  height: 34px; padding: 0 28px 0 8px;
+  font-family: 'Outfit', sans-serif; font-size: 0.82rem;
+  font-weight: 300; color: var(--text-muted);
+  cursor: pointer; letter-spacing: 0.02em; outline: none;
+  transition: color 0.2s, background 0.2s; min-width: 100px;
+}
+.wlSortSelect:focus,
+.wlSortSelect:hover { color: var(--text); background: var(--surface); outline: 1px solid var(--accent-glow); }
+.wlSortChevron {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  font-size: 18px; color: var(--text-subtle); pointer-events: none;
+}
+
+/* ── Status Tabs ────────────────────────────────────── */
+.wlStatusTabs {
+  display: flex; gap: 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.wlStatusTabs::-webkit-scrollbar { display: none; }
+
+.wlTab {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 12px 18px;
+  background: transparent; border: none;
+  border-bottom: 2px solid transparent;
+  font-family: 'Outfit', sans-serif; font-size: 0.82rem;
+  font-weight: 300; color: var(--text-muted);
+  cursor: pointer; white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+  letter-spacing: 0.02em;
+}
+.wlTab:hover { color: var(--text); }
+.wlTabActive {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 400;
+}
+
+.wlTabCount {
+  font-size: 0.7rem; font-weight: 500;
+  background: var(--surface-2); color: var(--text-subtle);
+  padding: 1px 6px; border-radius: 999px;
+  letter-spacing: 0;
+}
+.wlTabActive .wlTabCount {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* ── Grid ───────────────────────────────────────────── */
+.wlGrid {
+  padding: 24px 52px 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 20px 16px;
+}
+
+.emptyStateSpan { grid-column: 1 / -1; }
+
+/* ── Pagination ──────────────────────────────────── */
+.browsePagination {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; justify-content: center;
+  gap: 4px; padding: 40px 0 8px;
+}
+.pgPages { display: flex; align-items: center; gap: 4px; }
+.pgBtn {
+  display: inline-grid; place-items: center;
+  min-width: 36px; height: 36px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: transparent; color: var(--text-muted);
+  font-family: 'Outfit', sans-serif; font-size: 0.82rem;
+  cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s;
+  padding: 0 6px;
+}
+.pgBtn:hover:not(:disabled) { background: var(--surface-2); color: var(--text); border-color: var(--text-subtle); }
+.pgBtn:disabled { opacity: 0.3; cursor: default; }
+.pgNumActive { background: var(--accent-dim); border-color: var(--accent-glow); color: var(--accent); }
+.pgArrow { width: 36px; }
+.pgEllipsis { font-size: 0.82rem; color: var(--text-subtle); padding: 0 6px; }
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 1279px) {
+  .wlToolbarSection { padding-inline: 40px; }
+  .wlGrid { padding-inline: 40px; grid-template-columns: repeat(6, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .wlToolbarSection { padding-inline: 28px; }
+  .wlGrid { padding-inline: 28px; grid-template-columns: repeat(4, 1fr); }
+  .wlHeader { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .wlControls { width: 100%; }
+  .wlSearchWrap { flex: 1; min-width: 0; }
+}
+
+@media (max-width: 760px) {
+  .wlToolbarSection { padding-inline: 20px; }
+  .wlGrid { padding-inline: 20px; grid-template-columns: repeat(3, 1fr); }
+  .wlTitle { font-size: 1.65rem; }
+  .wlTab { padding: 10px 12px; font-size: 0.78rem; }
+  .wlHeader { flex-direction: column; align-items: stretch; gap: 14px; }
+  .wlControls { width: 100%; }
+  .wlSearchWrap { flex: 1 1 0; min-width: 0; }
+  .wlControls .wlSortWrap { flex-shrink: 0; }
+  .wlSortSelect { min-width: 120px; }
+}
+
+@media (max-width: 460px) {
+  .wlToolbarSection { padding-inline: 14px; }
+  .wlGrid { padding-inline: 14px; grid-template-columns: repeat(2, 1fr); }
+  .wlControls { width: 100%; flex-wrap: nowrap; gap: 8px; }
+  .wlSearchWrap { flex: 1 1 0; min-width: 0; }
+  .wlControls .wlSortWrap { flex-shrink: 0; }
+  .wlSortSelect { min-width: 110px; }
+}

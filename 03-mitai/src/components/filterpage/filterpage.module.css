@@ -1,0 +1,218 @@
+/* ─── BROWSE PAGE ──────────────────────────── */
+.browsePage {
+  min-height: 100svh;
+  padding-top: calc(var(--nav-h) + 40px);
+  padding-bottom: 100px;
+}
+
+/* ─── FILTER SECTION ───────────────────────── */
+.filterSection {
+  padding: 28px 52px 24px;
+  display: flex; flex-direction: column; gap: 16px;
+  background: var(--bg);
+  transition: background 0.35s ease;
+}
+
+.filterHeader {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.filterTitleGroup { display: flex; align-items: baseline; gap: 14px; }
+
+.browseTitle {
+  font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+  font-weight: 400; color: var(--text); letter-spacing: -0.01em;
+  padding-left: 14px; border-left: 2px solid var(--accent); line-height: 1;
+}
+.resultsCount { font-size: 0.78rem; font-weight: 300; color: var(--text-subtle); letter-spacing: 0.04em; }
+
+.filterReset {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Outfit', sans-serif; font-size: 0.78rem;
+  font-weight: 400; color: var(--text-muted);
+  background: transparent; border: none; cursor: pointer;
+  letter-spacing: 0.03em; padding: 6px 0;
+  transition: color 0.2s; flex-shrink: 0;
+}
+.filterReset:hover { color: var(--accent); }
+
+.filterBar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.filterInputWrap {
+  flex: 1; min-width: 180px; max-width: 280px;
+  display: flex; align-items: center; gap: 9px;
+  background: var(--surface-2); border-radius: 0;
+  padding: 0 8px; height: 34px; color: var(--text-muted); transition: color 0.2s;
+}
+.filterInputWrap:focus-within { color: var(--accent); outline: 1px solid var(--accent-glow); }
+.filterInputIcon { font-size: 18px; flex-shrink: 0; }
+.filterInput {
+  flex: 1; background: none; border: none; outline: none;
+  font-family: 'Outfit', sans-serif; font-size: 0.84rem;
+  font-weight: 300; color: var(--text); letter-spacing: 0.02em;
+}
+.filterInput::placeholder { color: var(--text-subtle); }
+
+.filterSelectWrap,
+.genreDropdown { position: relative; flex-shrink: 0; }
+.filterSelect {
+  appearance: none; -webkit-appearance: none;
+  background: var(--surface-2); border: none; border-radius: 0;
+  height: 34px; padding: 0 28px 0 8px;
+  font-family: 'Outfit', sans-serif; font-size: 0.82rem;
+  font-weight: 300; color: var(--text-muted);
+  cursor: pointer; letter-spacing: 0.02em; outline: none;
+  transition: color 0.2s, background 0.2s; min-width: 100px;
+}
+.filterSelect:focus,
+.filterSelect:hover { color: var(--text); background: var(--surface); outline: 1px solid var(--accent-glow); }
+.filterSelect option { background: var(--surface-2); color: var(--text); }
+.filterChevron {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  font-size: 18px; color: var(--text-subtle); pointer-events: none;
+}
+
+.filterSearchBtn {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 34px; padding: 0 18px;
+  background: var(--surface); color: var(--text-muted);
+  border: none; border-radius: 0;
+  font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 400;
+  letter-spacing: 0.02em; cursor: pointer; flex-shrink: 0;
+  transition: color 0.2s, background 0.2s;
+}
+.filterSearchBtn:hover { color: var(--text); background: var(--surface-2); outline: 1px solid var(--accent-glow); }
+
+.genreChipGroup { display: flex; flex-wrap: wrap; gap: 6px; flex: 1 1 100%; order: 10; }
+.genreChip {
+  height: 30px; padding: 0 12px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  color: var(--text-muted); font-family: 'Outfit', sans-serif;
+  font-size: 0.76rem; font-weight: 400; letter-spacing: 0.02em;
+  cursor: pointer; transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.genreChip:hover { color: var(--text); border-color: var(--accent-glow); }
+.genreChipActive {
+  background: var(--accent-dim); border-color: var(--accent-glow); color: var(--accent);
+}
+
+/* ─── GENRE DROPDOWN (details/summary, click to open) ─── */
+.genreDropdownToggle {
+  display: flex; align-items: center; justify-content: space-between; gap: 4px;
+  height: 34px; padding: 0 10px; min-width: 110px; box-sizing: border-box;
+  background: var(--surface-2); border: 1px solid var(--border);
+  color: var(--text-muted); font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem; letter-spacing: 0.02em; line-height: 1;
+  cursor: pointer; list-style: none; user-select: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+.genreDropdownToggle::marker { display: none; content: ''; }
+.genreDropdownToggle::-webkit-details-marker { display: none; }
+.genreDropdownToggle:hover { color: var(--text); border-color: var(--accent-glow); }
+.genreDropdown[open] .genreDropdownToggle { color: var(--accent); border-color: var(--accent-glow); }
+.genreChevron { font-size: 18px; color: var(--text-subtle); line-height: 1; flex-shrink: 0; }
+.genreDropdownPanel {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 20;
+  display: flex; flex-wrap: wrap; gap: 6px; width: min(340px, 90vw); padding: 12px 12px 40px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+.genreDropdownClose {
+  position: absolute; bottom: 8px; right: 8px;
+  display: inline-grid; place-items: center;
+  width: 26px; height: 26px; border-radius: 6px;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-muted); cursor: pointer; padding: 0;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.genreDropdownClose:hover { background: var(--accent); color: var(--btn-text); border-color: var(--accent); }
+.genreDropdownClose .material-symbols-rounded { font-size: 16px;}
+
+.activeFilters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filterChip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'Outfit', sans-serif; font-size: 0.76rem;
+  font-weight: 400; color: var(--accent);
+  background: var(--accent-dim); border: 1px solid var(--accent-glow);
+  border-radius: 999px; padding: 4px 12px; cursor: pointer;
+  letter-spacing: 0.03em; transition: background 0.2s, color 0.2s;
+}
+.filterChip:hover { background: var(--accent); color: var(--btn-text); border-color: var(--accent); }
+
+/* ─── GRID ──────────────────────────────── */
+.browseGrid {
+  padding: 0 52px 0;
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 20px 16px;
+}
+
+.browseEmpty {
+  grid-column: 1 / -1; display: flex; flex-direction: column;
+  align-items: center; gap: 12px; padding: 80px 24px; text-align: center;
+}
+.browseEmptyIcon {
+  font-size: 56px; color: var(--text-subtle);
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 48;
+}
+.browseEmptyTitle { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--text-muted); }
+.browseEmptySub   { font-size: 0.85rem; color: var(--text-subtle); font-weight: 300; }
+.browseEmptyBtn   { margin-top: 8px; }
+
+.emptyStateSpan { grid-column: 1 / -1; }
+
+/* ─── PAGINATION ───────────────────────── */
+.browsePagination {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; justify-content: center;
+  gap: 4px; padding: 40px 0 8px;
+}
+.pgPages { display: flex; align-items: center; gap: 4px; }
+.pgBtn {
+  display: inline-grid; place-items: center;
+  min-width: 36px; height: 36px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: transparent; color: var(--text-muted);
+  font-family: 'Outfit', sans-serif; font-size: 0.82rem;
+  cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s;
+  padding: 0 6px;
+}
+.pgBtn:hover:not(:disabled) { background: var(--surface-2); color: var(--text); border-color: var(--text-subtle); }
+.pgBtn:disabled { opacity: 0.3; cursor: default; }
+.pgNumActive { background: var(--accent-dim); border-color: var(--accent-glow); color: var(--accent); }
+.pgArrow { width: 36px; }
+.pgEllipsis { font-size: 0.82rem; color: var(--text-subtle); padding: 0 6px; }
+
+/* ─── VISIBILITY TOGGLE (generic, all breakpoints) ── */
+.hidden { display: none; }
+
+/* ─── RESPONSIVE ───────────────────────── */
+@media (max-width: 1279px) {
+  .filterSection { padding-inline: 40px; }
+  .browseGrid    { padding-inline: 40px; grid-template-columns: repeat(6, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .filterSection { padding-inline: 28px; }
+  .browseGrid    { padding-inline: 28px; grid-template-columns: repeat(4, 1fr); }
+  .filterBar     { flex-wrap: wrap; gap: 8px; }
+  .filterInputWrap { max-width: none; flex: 1 1 calc(50% - 4px); }
+  .filterSelectWrap,
+  .genreDropdown { flex: 1 1 calc(50% - 4px); }
+  .filterSelect,
+  .genreDropdownToggle { width: 100%; }
+}
+
+@media (max-width: 760px) {
+  .filterSection { padding-inline: 18px; }
+  .browseGrid    { padding-inline: 18px; grid-template-columns: repeat(3, 1fr); gap: 16px 12px; }
+  .browseTitle   { font-size: 1.65rem; }
+}
+
+@media (max-width: 460px) {
+  .filterSection { padding-inline: 14px; }
+  .browseGrid    { padding-inline: 14px; grid-template-columns: repeat(2, 1fr); gap: 14px 10px; }
+  .filterInputWrap,
+  .filterSelectWrap,
+  .genreDropdown { flex: 1 1 100%; }
+  .filterInputWrap { max-width: 100%; }
+}

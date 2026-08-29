@@ -1,0 +1,101 @@
+/* ─── ANIME CARD ─────────────────────────────────────── */
+.animeCard {
+  cursor: pointer; min-width: 0; scroll-snap-align: start;
+  position: relative;
+  z-index: 1;
+}
+
+.cardImgWrap {
+  position: relative; width: 100%; aspect-ratio: 2 / 3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-2); margin-bottom: 10px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.3s ease, transform 0.4s ease;
+}
+.animeCard:hover .cardImgWrap {
+  box-shadow: 0 10px 36px rgba(0,0,0,0.28);
+  transform: scale(1.06);
+  transform-origin: center center;
+}
+
+.cardImgWrap a {
+  display: block; width: 100%; height: 100%;
+}
+
+.cardImgWrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: var(--radius);
+  transition: transform 0.4s ease;
+}
+.animeCard:hover .cardImgWrap img { transform: scale(1); }
+
+.cardHover {
+  position: absolute; inset: 0;
+  background: var(--card-hover-bg);
+  opacity: 0; transition: opacity 0.3s;
+  border-radius: var(--radius);
+  overflow: hidden;
+  pointer-events: none;
+}
+.animeCard:hover .cardHover { opacity: 1; }
+
+.cardScore {
+  position: absolute; bottom: 10px; left: 10px;
+  font-size: 0.78rem; font-weight: 500; color: var(--accent); letter-spacing: 0.02em;
+  display: flex; align-items: center; gap: 3px;
+  pointer-events: none;
+}
+
+.cardSave {
+  position: absolute; bottom: 10px; right: 10px;
+  width: 28px; height: 28px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--card-save-bg);
+  color: var(--text); display: flex; align-items: center; justify-content: center;
+  padding: 0; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s;
+  pointer-events: auto;
+}
+.cardSave:hover { background: var(--accent); color: var(--btn-text); border-color: var(--accent); }
+
+.cardSaveActive {
+  background: var(--accent);
+  color: var(--btn-text);
+  border-color: var(--accent);
+}
+
+.cardAiring {
+  position: absolute; top: 8px; left: 8px;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.62rem; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.07em; color: var(--text);
+  background: rgba(0,0,0,0.55); padding: 2px 7px 2px 6px;
+  border-radius: 4px; backdrop-filter: blur(4px);
+}
+:global(:root.light) .cardAiring { background: rgba(255,255,255,0.55); color: var(--text); }
+
+.cardStatusDot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+.dotAiring   { background: #4ade80; }
+.dotFinished { background: var(--accent); }
+.dotUpcoming { background: #94a3b8; }
+
+.cardTypeBadge {
+  position: absolute; bottom: 8px; left: 8px;
+  font-size: 0.62rem; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.07em; color: var(--text);
+  background: rgba(0,0,0,0.55); padding: 2px 7px;
+  border-radius: 4px; backdrop-filter: blur(4px);
+}
+:global(:root.light) .cardTypeBadge { background: rgba(255,255,255,0.55); color: var(--text); }
+
+.cardTitle {
+  font-size: 0.8rem; font-weight: 400; color: var(--text);
+  line-height: 1.35; margin-bottom: 4px;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.cardSub { font-size: 0.7rem; color: var(--text-subtle); font-weight: 300; letter-spacing: 0.03em; }

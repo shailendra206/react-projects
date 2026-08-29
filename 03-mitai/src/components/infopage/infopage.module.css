@@ -1,0 +1,304 @@
+/* ── Hero ───────────────────────────────────────────── */
+.detailHero {
+  position: relative;
+  margin-top: var(--nav-h);
+  animation: fade-up 0.7s ease both;
+}
+
+.detailBannerWrap {
+  position: relative;
+  width: 100%; height: 460px;
+  overflow: hidden; background: var(--surface-2);
+}
+.detailBannerImg {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 20%;
+}
+.detailBannerGradient {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top,  var(--bg) 0%, transparent 60%),
+    linear-gradient(to right, var(--bg) 0%, transparent 50%);
+  transition: background 0.35s ease;
+}
+
+.detailHeroBody {
+  position: relative;
+  display: flex; gap: 36px;
+  padding: 0 52px 52px;
+  margin-top: -180px;
+  z-index: 2;
+  align-items: flex-end;
+}
+
+.detailPoster {
+  flex-shrink: 0;
+  width: 200px; aspect-ratio: 2 / 3;
+  border-radius: 12px; object-fit: cover;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 0 0 1px var(--border);
+}
+
+.detailHeroText { flex: 1; padding-bottom: 4px; min-width: 0; }
+
+.detailGenres {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+}
+.detailGenreTag {
+  font-size: 0.68rem; font-weight: 400;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 4px;
+  background: var(--accent-dim); border: 1px solid var(--accent-glow); color: var(--accent);
+}
+
+.detailTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.9rem, 3.6vw, 3.4rem);
+  font-weight: 300; line-height: 1.08;
+  letter-spacing: -0.015em; color: var(--text);
+  margin-bottom: 16px;
+}
+.detailTitle em { font-style: italic; color: var(--accent); }
+
+/* ── Meta strip ──────────────────────────────────────── */
+.detailMetaRow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.detailMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 20px;
+  border-right: 1px solid var(--border);
+  min-width: 80px;
+}
+.detailMetaItem:last-child { border-right: none; }
+
+.detailMetaLabel {
+  font-size: 0.62rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-subtle);
+  white-space: nowrap;
+}
+
+.detailMetaValue {
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.detailMetaScore {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.detailActions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+/* ── Body: two-column grid ──────────────────────────── */
+.detailBody {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 0 52px;
+  padding: 0 52px 100px;
+  align-items: start;
+}
+
+.detailMain {
+  display: flex; flex-direction: column;
+  gap: 52px;
+  padding-top: 48px;
+  min-width: 0;
+}
+
+.detailSidebar {
+  padding-top: 48px;
+  display: flex; flex-direction: column;
+  gap: 36px;
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+  min-width: 0;
+}
+
+/* ── Section titles ─────────────────────────────────── */
+.detailSection { display: flex; flex-direction: column; gap: 18px; }
+
+.detailSectionTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem; font-weight: 400;
+  color: var(--text); letter-spacing: -0.01em;
+  padding-left: 12px; border-left: 2px solid var(--accent);
+  line-height: 1;
+}
+
+/* ── Synopsis ───────────────────────────────────────── */
+.detailSynopsis {
+  font-size: 0.92rem; font-weight: 300;
+  color: var(--text-muted); line-height: 1.9;
+  display: -webkit-box; -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.expanded {
+  -webkit-line-clamp: unset;   /* removes the clamp, shows full text */
+  overflow: visible;
+}
+
+.synopsisToggle {
+  background: none; border: none;
+  color: var(--accent); font-family: 'Outfit', sans-serif;
+  font-size: 0.83rem; font-weight: 400; cursor: pointer;
+  padding: 0; align-self: flex-start;
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: var(--accent-glow);
+  transition: opacity 0.2s;
+}
+.synopsisToggle:hover { opacity: 0.7; }
+
+/* ── Trailer ────────────────────────────────────────── */
+.detailTrailerWrap {
+  position: relative; width: 100%;
+  aspect-ratio: 16 / 9; border-radius: 12px;
+  overflow: hidden; background: var(--surface-2);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+.detailTrailerWrap iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; border: none;
+}
+
+/* ── Rows (characters / staff / relations) ──────────── */
+.personRow,
+.relationsRow {
+  display: flex; gap: 16px;
+  overflow-x: auto; padding-bottom: 8px;
+  scroll-snap-type: inline mandatory;
+}
+
+/* ── Sidebar info list ──────────────────────────────── */
+.infoList {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding: 4px 0;
+}
+
+.infoLabel,
+.infoValue {
+  padding: 10px 18px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+.infoLabel:last-of-type,
+.infoValue:last-of-type { border-bottom: none; }
+
+.infoLabel {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.63rem;
+  color: var(--text-subtle);
+  white-space: nowrap;
+  padding-right: 12px;
+  padding-left: 18px;
+}
+
+.infoValue {
+  color: var(--text-muted);
+  font-weight: 300;
+  padding-left: 16px;
+  border-left: 1px solid var(--border);
+}
+
+/* ── Sidebar: Tags ──────────────────────────────────── */
+.tagsList { display: flex; flex-direction: column; gap: 10px; }
+
+.tagItem { display: flex; align-items: center; gap: 12px; }
+
+.tagName {
+  font-size: 0.78rem; font-weight: 300; color: var(--text-muted);
+  min-width: 120px; max-width: 140px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  flex-shrink: 0;
+}
+.tagBarWrap {
+  flex: 1; height: 4px;
+  background: var(--surface-2); border-radius: 999px; overflow: hidden;
+}
+.tagBarFill {
+  height: 100%; background: var(--accent);
+  border-radius: 999px; opacity: 0.65;
+}
+.tagPct {
+  font-size: 0.68rem; color: var(--text-subtle);
+  font-weight: 300; flex-shrink: 0; width: 32px; text-align: right;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 1279px) {
+  .detailBannerWrap { height: 400px; }
+  .detailHeroBody   { padding-inline: 40px; }
+  .detailBody       { padding-inline: 40px; gap: 0 40px; grid-template-columns: 1fr 280px; }
+}
+
+@media (max-width: 1024px) {
+  .detailBannerWrap { height: 320px; }
+  .detailHeroBody   { padding-inline: 28px; margin-top: -120px; gap: 26px; }
+  .detailPoster     { width: 160px; }
+  .detailBody       { grid-template-columns: 1fr; gap: 0; padding-inline: 28px; }
+  .detailSidebar    { position: static; padding-top: 48px; }
+  .detailMain       { padding-top: 40px; }
+}
+
+@media (max-width: 760px) {
+  .detailBannerWrap  { height: 240px; }
+  .detailHeroBody {
+    flex-direction: column; align-items: center; text-align: center;
+    padding-inline: 20px; margin-top: -80px; gap: 20px;
+  }
+  .detailPoster    { width: 130px; }
+  .detailGenres    { justify-content: center; }
+  .detailBody      { padding-inline: 20px; }
+  .detailMain      { padding-top: 32px; gap: 40px; }
+  .detailMetaRow   { width: 100%; justify-content: center; }
+  .detailMetaItem  { flex: 1 1 0; min-width: 0; justify-content: center; align-items: center; }
+  .detailMetaLabel { text-align: center; }
+  .detailMetaValue { text-align: center; white-space: normal; font-size: 0.82rem; }
+  .detailActions   { flex-direction: column; align-items: stretch; }
+  .detailActions :global(.btn-primary),
+  .detailActions :global(.btn-ghost)  { justify-content: center; }
+  .detailActions :global(.btn-watch)  { width: 100%; text-align: center; }
+  .tagName { min-width: 100px; max-width: 120px; }
+}
+
+@media (max-width: 460px) {
+  .detailBannerWrap  { height: 180px; }
+  .detailHeroBody    { padding-inline: 14px; margin-top: -60px; }
+  .detailPoster      { width: 110px; }
+  .detailBody        { padding-inline: 14px; }
+  .detailMain        { padding-top: 24px; gap: 32px; }
+  .detailMetaRow     { width: 100%; }
+  .detailMetaItem    { flex: 1 1 auto; min-width: 0; }
+  .tagName           { min-width: 80px; max-width: 100px; }
+}
