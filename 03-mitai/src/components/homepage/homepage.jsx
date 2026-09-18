@@ -8,6 +8,7 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import { Link } from 'react-router-dom';
 import { useWatchlist } from '../../context/watchlistContext';
+import { optimizedImage } from '../../utils/imageProxy';
 
 
 
@@ -41,7 +42,7 @@ function Homepage({heroSectionData, trendingSectionData, thisSeasonData, popular
                       {/* bg-img */}
                       <div className={styles.heroBg}>
                         <img
-                          src={item.bannerImage || "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-RtgLkOgSDgYb.jpg"}
+                          src={optimizedImage(item.bannerImage || "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-RtgLkOgSDgYb.jpg", 1600)}
                           alt={item.title ? item.title : '?'}
                           className={styles.heroImg}
                           key={isActive ? `${item.id}-active` : item.id}

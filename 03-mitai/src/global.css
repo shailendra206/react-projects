@@ -1,6 +1,29 @@
 /* ─── RESET & BASE ─────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ─── FONT FALLBACK METRIC OVERRIDES ────────────────────
+   Matches the fallback font's box size to the real webfont's,
+   so swapping from fallback -> webfont (font-display: swap)
+   causes ~0 layout shift instead of a visible reflow.
+   Values computed from each font's actual OS/2 metrics. ─── */
+@font-face {
+  font-family: 'Cormorant Garamond fallback';
+  src: local('Times New Roman');
+  size-adjust: 47.36%;
+  ascent-override: 195.12%;
+  descent-override: 60.61%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Outfit fallback';
+  src: local('Arial');
+  size-adjust: 48.74%;
+  ascent-override: 205.17%;
+  descent-override: 53.34%;
+  line-gap-override: 0%;
+}
+
 /* ─── DARK THEME ────────────────────────────────────── */
 :root {
   --bg:           #0e0f14;
@@ -60,7 +83,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'Outfit fallback', sans-serif;
   font-weight: 300;
   line-height: 1.6;
   min-height: 100vh;

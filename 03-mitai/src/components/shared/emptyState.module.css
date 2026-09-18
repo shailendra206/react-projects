@@ -14,7 +14,7 @@
 }
 
 .emptyTitle {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', 'Cormorant Garamond fallback', serif;
   font-size: clamp(1.4rem, 3vw, 1.8rem);
   font-weight: 400;
   color: var(--text);

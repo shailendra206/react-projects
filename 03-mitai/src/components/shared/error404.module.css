@@ -19,7 +19,7 @@
 }
 
 .errorCode {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', 'Cormorant Garamond fallback', serif;
   font-size: clamp(3rem, 10vw, 5.5rem);
   font-weight: 400;
   color: var(--accent);
@@ -28,7 +28,7 @@
 }
 
 .errorTitle {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', 'Cormorant Garamond fallback', serif;
   font-size: clamp(1.4rem, 3.5vw, 1.9rem);
   font-weight: 400;
   color: var(--text);

@@ -8,7 +8,7 @@
 }
 
 .fullPage {
-  min-height: calc(100svh - var(--nav-h) - 140px);
+  min-height: calc(100svh - var(--nav-h));
 }
 
 .spinner {

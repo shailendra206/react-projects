@@ -24,14 +24,14 @@
 }
 
 .logoJp {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', 'Cormorant Garamond fallback', serif;
   font-size: 1.1rem;
   color: var(--text-muted);
   letter-spacing: 0.04em;
 }
 
 .logoEn {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', 'Cormorant Garamond fallback', serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--accent);

@@ -1,6 +1,7 @@
 import styles from './animeCard.module.css';
 import { useWatchlist } from '../../context/watchlistContext';
 import { Link } from 'react-router-dom';
+import { optimizedImage } from '../../utils/imageProxy';
 
 const statusMap = {
   RELEASING:        { label: 'Airing',   dot: styles.dotAiring },
@@ -16,7 +17,7 @@ function AnimeCard({id, img, alt, title, sub, score, airing}) {
     <div className={styles.animeCard}>
       <div className={styles.cardImgWrap}>
         <Link to={`/info/${id}`}>
-          <img src={img} loading="lazy" alt={alt} />
+          <img src={optimizedImage(img, 440)} loading="lazy" alt={alt || title || 'Anime cover'} />
         </Link>
         <div className={styles.cardHover}>
           <span className={styles.cardScore}>

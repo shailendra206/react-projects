@@ -2,7 +2,7 @@
 .footer { border-top: 1px solid var(--border); padding: 24px 52px; transition: border-color 0.35s ease; }
 .footerInner { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
 .footerLogo {
-  font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+  font-family: 'Cormorant Garamond', 'Cormorant Garamond fallback', serif; font-size: 1.4rem;
   font-weight: 300; color: var(--text-muted); letter-spacing: 0.06em;
 }
 .footerLogo em { color: var(--accent); font-style: italic; }
