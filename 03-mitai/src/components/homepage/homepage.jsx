@@ -124,7 +124,7 @@ function Homepage({heroSectionData, trendingSectionData, thisSeasonData, popular
               <AnimeCard
                 id={item.id}
                 key={item.id}
-                img={item.coverImage.extraLarge}
+                img={item.coverImage.large}
                 title={item.title.romaji}
                 sub={`${item.format} · ${item.episodes ? item.episodes : '?'} ep`}
                 score={item.averageScore/10}
@@ -139,7 +139,7 @@ function Homepage({heroSectionData, trendingSectionData, thisSeasonData, popular
               <AnimeCard
                 id={item.id}
                 key={item.id}
-                img={item.coverImage.extraLarge}
+                img={item.coverImage.large}
                 title={item.title.romaji}
                 sub={`${item.format} · ${item.episodes ? item.episodes : '?'} ep`}
                 score={item.averageScore/10}
@@ -155,7 +155,7 @@ function Homepage({heroSectionData, trendingSectionData, thisSeasonData, popular
               <AnimeCard
                 id={item.id}
                 key={item.id}
-                img={item.coverImage.extraLarge}
+                img={item.coverImage.large}
                 title={item.title.romaji}
                 sub={`${item.format} · ${item.episodes ? item.episodes : '?'} ep`}
                 score={item.averageScore/10}

@@ -49,6 +49,8 @@ function App() {
           }
           coverImage{
             extraLarge
+            large
+            medium
           }
           averageScore
           episodes 
@@ -68,6 +70,8 @@ function App() {
           averageScore
           coverImage{
             extraLarge
+            large
+            medium
           }
           season
           seasonYear
@@ -83,6 +87,8 @@ function App() {
           }
           coverImage{
             extraLarge
+            large
+            medium
           }
           averageScore
           episodes 

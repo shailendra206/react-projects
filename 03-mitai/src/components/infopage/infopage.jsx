@@ -29,6 +29,7 @@ function InfoPage() {
         }
         coverImage{
           extraLarge
+          large
         }
         bannerImage
         averageScore

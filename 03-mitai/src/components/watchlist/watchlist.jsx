@@ -25,6 +25,7 @@ function Watchlist() {
           }
           coverImage{
             extraLarge
+            large
           }
           format
           episodes
