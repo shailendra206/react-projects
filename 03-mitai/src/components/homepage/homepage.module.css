@@ -6,24 +6,25 @@
   user-select: none;
 }
 
-.heroSlide {
+.heroSwiper {
   position: absolute;
   inset: 0;
+  height: 100%;
+}
+.heroSwiper :global(.swiper-wrapper),
+.heroSwiper :global(.swiper-slide) {
+  height: 100%;
+}
+
+.heroSlide.heroSlide {
+  position: relative;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding-top: calc(var(--nav-h) + 48px);
   padding-bottom: 84px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-}
-
-.heroSlideActive {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  overflow: hidden;
 }
 
 .heroBg { position: absolute; inset: 0; }
@@ -143,7 +144,6 @@
 
 @media (max-width: 760px) {
   .hero { height: clamp(700px, 94svh, 1500px); }
-  .heroSlideActive { height: 100%; }
   .heroSlide { padding-top: clamp(300px, 50svh, 420px); padding-bottom: 40px; }
   .heroImg { object-position: center top; }
   .heroGradient {
