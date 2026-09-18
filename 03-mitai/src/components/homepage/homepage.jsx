@@ -4,9 +4,8 @@ import AnimeCard from '../shared/animeCard.jsx';
 import LoadingSpinner from '../shared/loadingSpinner.jsx';
 import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/effect-fade';
 import { Link } from 'react-router-dom';
 import { useWatchlist } from '../../context/watchlistContext';
 
@@ -25,10 +24,8 @@ function Homepage({heroSectionData, trendingSectionData, thisSeasonData, popular
         {/* HERO */}
         <section className={styles.hero}>
           <Swiper
-            modules={[Autoplay, EffectFade]}
-            effect="fade"
-            fadeEffect={{ crossFade: true }}
-            speed={600}
+            modules={[Autoplay]}
+            speed={500}
             autoplay={{ delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: false }}
             loop
             onSwiper={(sw) => { swiperRef.current = sw; }}
@@ -48,6 +45,9 @@ function Homepage({heroSectionData, trendingSectionData, thisSeasonData, popular
                           alt={item.title ? item.title : '?'}
                           className={styles.heroImg}
                           key={isActive ? `${item.id}-active` : item.id}
+                          loading={isActive ? 'eager' : 'lazy'}
+                          fetchPriority={isActive ? 'high' : 'low'}
+                          decoding={isActive ? 'sync' : 'async'}
                         />
                         <div className={styles.heroGradient}></div>
                       </div>
